@@ -1,0 +1,16 @@
+Programma Diario Brigu-Borgo
+Il programma permette di salfare pagine diverse e riaprirle.
+Musica di sottofondo, con controllo volume e impostazioni.
+Ci sono delle impostazioni.
+Possono essere visualizzate pagine precedenti del diario.
+Scelta emoji a fine scrittura diario.
+Editor di testo complesso.
+Main page con sfondo.
+Per pagina di diario possono essere aggiuti degli allegati.
+Password per accedere al diario.
+Flag per criptare la pagina del diario.
+Possibilità di creare più diari.
+Selezionare data per la pagina.
+Template di base per le pagine di diario.
+
+Il programma può avere più diari. Un diario può avere più pagine.
