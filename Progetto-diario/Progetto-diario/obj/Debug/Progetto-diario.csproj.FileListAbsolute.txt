@@ -1,0 +1,15 @@
+C:\Users\briguglio_luca\Documents\Progetto-diario\Progetto-diario\Progetto-diario\bin\Debug\Progetto-diario.exe.config
+C:\Users\briguglio_luca\Documents\Progetto-diario\Progetto-diario\Progetto-diario\bin\Debug\Progetto-diario.exe
+C:\Users\briguglio_luca\Documents\Progetto-diario\Progetto-diario\Progetto-diario\bin\Debug\Progetto-diario.pdb
+C:\Users\briguglio_luca\Documents\Progetto-diario\Progetto-diario\Progetto-diario\obj\Debug\Progetto-diario.csproj.AssemblyReference.cache
+C:\Users\briguglio_luca\Documents\Progetto-diario\Progetto-diario\Progetto-diario\obj\Debug\MainWindow.g.cs
+C:\Users\briguglio_luca\Documents\Progetto-diario\Progetto-diario\Progetto-diario\obj\Debug\App.g.cs
+C:\Users\briguglio_luca\Documents\Progetto-diario\Progetto-diario\Progetto-diario\obj\Debug\Progetto-diario_MarkupCompile.cache
+C:\Users\briguglio_luca\Documents\Progetto-diario\Progetto-diario\Progetto-diario\obj\Debug\Progetto-diario_MarkupCompile.lref
+C:\Users\briguglio_luca\Documents\Progetto-diario\Progetto-diario\Progetto-diario\obj\Debug\MainWindow.baml
+C:\Users\briguglio_luca\Documents\Progetto-diario\Progetto-diario\Progetto-diario\obj\Debug\Progetto-diario.g.resources
+C:\Users\briguglio_luca\Documents\Progetto-diario\Progetto-diario\Progetto-diario\obj\Debug\Progetto_diario.Properties.Resources.resources
+C:\Users\briguglio_luca\Documents\Progetto-diario\Progetto-diario\Progetto-diario\obj\Debug\Progetto-diario.csproj.GenerateResource.cache
+C:\Users\briguglio_luca\Documents\Progetto-diario\Progetto-diario\Progetto-diario\obj\Debug\Progetto-diario.csproj.CoreCompileInputs.cache
+C:\Users\briguglio_luca\Documents\Progetto-diario\Progetto-diario\Progetto-diario\obj\Debug\Progetto-diario.exe
+C:\Users\briguglio_luca\Documents\Progetto-diario\Progetto-diario\Progetto-diario\obj\Debug\Progetto-diario.pdb
