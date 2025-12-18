@@ -15,4 +15,12 @@ Template di base per le pagine di diario.
 
 Il programma può avere più diari. Un diario può avere più pagine.
 
+provaaaaaHSAHFJDHSK<<<<<<< HEAD
 provaaaaaHSAHFJDHSK
+=======
+ciao
+
+ciao ciao ciao
+
+barbabietola da zucchero
+>>>>>>> 24c1682d2b978f2f237d140640b752c0d6a16739
