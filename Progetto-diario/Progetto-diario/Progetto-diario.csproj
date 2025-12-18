@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{351B7AAF-542C-47C4-8FE7-6F469E6625D7}</ProjectGuid>
+    <ProjectGuid>{D20D14B4-F7D0-42A1-9F75-F9632888B6D5}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>Progetto_diario</RootNamespace>
     <AssemblyName>Progetto-diario</AssemblyName>
