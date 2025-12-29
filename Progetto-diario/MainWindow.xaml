@@ -7,6 +7,8 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        
+        <ListBox d:ItemsSource="{d:SampleData ItemCount=5}" Margin="303,93,361,217"/>
+        <Button Content="Apri diario" HorizontalAlignment="Left" Margin="294,274,0,0" VerticalAlignment="Top" Height="65" Width="145"/>
+
     </Grid>
 </Window>

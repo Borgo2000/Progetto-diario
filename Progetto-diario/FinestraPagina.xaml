@@ -1,0 +1,16 @@
+﻿<Window x:Class="Progetto_diario.FinestraPagina"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Progetto_diario"
+        mc:Ignorable="d"
+        Title="FinestraPagina" Height="450" Width="800">
+    <Grid>
+        <TextBox HorizontalAlignment="Left" Margin="36,128,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="244" Height="122"/>
+        <Button Content="Salva" HorizontalAlignment="Left" Margin="36,300,0,0" VerticalAlignment="Top" Height="56" Width="209"/>
+        <ComboBox HorizontalAlignment="Left" Margin="36,44,0,0" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Template" HorizontalAlignment="Left" Margin="36,13,0,0" VerticalAlignment="Top"/>
+        <Label Content="Contenuto" HorizontalAlignment="Left" Margin="36,97,0,0" VerticalAlignment="Top"/>
+    </Grid>
+</Window>
