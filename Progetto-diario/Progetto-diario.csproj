@@ -77,12 +77,15 @@
     <Compile Include="FinestraPagina.xaml.cs">
       <DependentUpon>FinestraPagina.xaml</DependentUpon>
     </Compile>
+    <Compile Include="GestoreDiario.cs" />
+    <Compile Include="Diario.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Pagina.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

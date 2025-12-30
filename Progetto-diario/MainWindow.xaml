@@ -8,7 +8,10 @@
         Title="MainWindow" Height="450" Width="800">
     <Grid>
         <ListBox d:ItemsSource="{d:SampleData ItemCount=5}" Margin="303,93,361,217"/>
-        <Button Content="Apri diario" HorizontalAlignment="Left" Margin="294,274,0,0" VerticalAlignment="Top" Height="65" Width="145"/>
+        <Button x:Name="button_apriDiario" Content="Apri diario" HorizontalAlignment="Left" Margin="294,274,0,0" VerticalAlignment="Top" Height="65" Width="145"/>
+        <Button x:Name="button_aggiungi" Content="aggiungi" HorizontalAlignment="Left" Height="65" Margin="526,274,0,0" VerticalAlignment="Top" Width="124"/>
+        <Button x:Name="button_elimina" Content="elimina" HorizontalAlignment="Left" Height="65" Margin="82,274,0,0" VerticalAlignment="Top" Width="112"/>
+        <Label x:Name="label_stato" Content="aperto" HorizontalAlignment="Left" Height="30" Margin="634,379,0,0" VerticalAlignment="Top" Width="132"/>
 
     </Grid>
 </Window>

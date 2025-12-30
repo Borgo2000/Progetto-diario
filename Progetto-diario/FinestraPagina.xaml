@@ -5,12 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Progetto_diario"
         mc:Ignorable="d"
-        Title="FinestraPagina" Height="450" Width="800">
-    <Grid>
+        Title="FinestraPagina" Height="788" Width="680">
+    <Grid Margin="10,10,0,0">
         <TextBox HorizontalAlignment="Left" Margin="36,128,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="244" Height="122"/>
         <Button Content="Salva" HorizontalAlignment="Left" Margin="36,300,0,0" VerticalAlignment="Top" Height="56" Width="209"/>
         <ComboBox HorizontalAlignment="Left" Margin="36,44,0,0" VerticalAlignment="Top" Width="120"/>
         <Label Content="Template" HorizontalAlignment="Left" Margin="36,13,0,0" VerticalAlignment="Top"/>
         <Label Content="Contenuto" HorizontalAlignment="Left" Margin="36,97,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="buttton_emoji" Content="emoji" HorizontalAlignment="Left" Height="65" Margin="52,454,0,0" VerticalAlignment="Top" Width="104" Click="Button_Click"/>
+        <ComboBox x:Name="combobox_musica" HorizontalAlignment="Left" Height="22" Margin="454,44,0,0" VerticalAlignment="Top" Width="150"/>
+        <Label x:Name="label_musica" Content="musica" HorizontalAlignment="Left" Height="26" Margin="454,13,0,0" VerticalAlignment="Top" Width="150"/>
     </Grid>
 </Window>
