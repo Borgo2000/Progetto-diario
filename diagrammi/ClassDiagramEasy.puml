@@ -1,0 +1,60 @@
+@startuml
+
+'Classi base
+class Applicazione{}
+
+class GestoreDiario{}
+
+class GestorePagina{}
+
+'Strutture dati
+class ListaDiari{}
+
+class InfoDiario{}
+
+class Diario extends InfoDiario{}
+
+class InfoPagina{}
+
+class Pagina extends InfoPagina{}
+
+'Salvataggio file
+class SalvaDiari{}
+
+class SalvaDiario{}
+
+class SalvaPagina{}
+
+'Interfacce utente
+interface MainWindow{}
+
+interface FinestraDiario{}
+
+interface FinestraPagina{}
+
+'Interazioni tra interfacce
+MainWindow --> FinestraDiario : apre
+FinestraDiario --> FinestraPagina : apre
+
+'Interazioni con interfacce
+MainWindow --> Applicazione : interagisce
+FinestraDiario --> GestoreDiario : interagisce
+FinestraPagina --> GestorePagina : interagisce
+
+'Relazioni
+Applicazione *-- ListaDiari : ha
+GestoreDiario *-- Diario : ha
+GestorePagina *-- Pagina : ha
+
+'Relazioni lettura scrittura
+Applicazione --> SalvaDiari : int.
+
+GestoreDiario --> SalvaDiario : int.
+
+GestorePagina --> SalvaPagina : int.
+
+'Relazioni strutture dati
+ListaDiari *-- InfoDiario : ha
+Diario *-- InfoPagina : ha
+
+@enduml

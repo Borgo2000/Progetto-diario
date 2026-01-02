@@ -1,0 +1,158 @@
+@startuml
+
+'Classi base
+class Applicazione{
+    -diari : ListaDiari
+}
+
+class GestoreDiario{
+    -diario: Diario
+}
+
+class GestorePagina{
+    -pagina : Pagina
+}
+
+'Strutture dati
+class ListaDiari{
+    -diari : List<InfoDiario>
+
+    +ListaDiari(diari: List<InfoDiario>) : void
+
+    +aggiungiDiario(diario: InfoDiario) : void
+    +rimuoviDiario(diario: InfoDiario) : void
+    +modificaDiario(diario: InfoDiario) : void
+
+    +getDiari() : List<InfoDiario>
+}
+
+class InfoDiario{
+    -percorso : stirng
+    -nome : string
+    -dataCreazione : Date
+
+    +InfoDiario(percorso: string, nome: string, dataCreazione: Date)
+
+    'per interfacce di salvataggio
+    +getPercorso() : string
+
+    +ToString() : string
+}
+
+class Diario extends InfoDiario{
+    -pagine : List<InfoPagina>
+    
+    -password : string
+    -diarioVaidato : bool
+
+    +Diario(diario: InfoDiario, password: string, pagine: List<InfoPagina>)
+
+    'setter
+    +setNome(nome: string) : void
+
+    +aggiungiPagina(pagina: InfoPagina) : void
+    +rimuoviPagina(pagina: InfoPagina) : void
+    +modificaPagina(pagina: InfoPagina) : void
+
+    +setPassword(password: string, nuovaPassword: string) : void
+
+    'getter
+    +getNome() : string
+    +getData() : Date
+    +getPagine() : List<InfoPagine>
+
+    'sicurezza
+    +validaDiario(password: string) : bool
+    +isValidato() : bool
+}
+
+class InfoPagina{
+    -percorso : stirng
+    -numeroPagina : int
+    -dataPagina : Date
+
+    +InfoPagina(percorso: string, numeroPagina: int, dataPagina: Date)
+    +getPercorso() : string
+
+    +ToString() : string
+}
+
+class Pagina extends InfoPagina{
+    -contenuto : string
+    -allegati : List<string>
+
+    +Pagina(pagina: InfoPagina, contenuto: string, allegati: List<string>)
+
+    'setter
+    +setContenuto(contenuto: string) : void
+    +setData(dataPagina : Date) : void
+    
+    +aggiungiAllegato(percorso: string) : void
+    +rimuoviAllegato(percorso: string) : void
+
+    'getter
+    +getNumero() : int
+    +getData() : Date
+    +getContenuto() : string
+    +getAllegati() : List<string>
+
+}
+
+'Salvataggio file
+class SalvaDiari{
+    -percorso : string
+
+    +SalvaDiari(percorso: string)
+    +getDiari() : List<InfoDiario>
+    +setDiari(diari: List<InfoDiario>) : void
+}
+
+class SalvaDiario{
+    -percorso : string
+
+    +SalvaDiario(percorso: string)
+    +getDiario() : List<InfoPagina>
+    +setDiario(diario: List<InfoPagina>) : void
+}
+
+class SalvaPagina{}
+
+'Interfacce utente
+interface MainWindow{
+    -app : Applicazione
+}
+
+interface FinestraDiario{
+    -gestDiario : GestoreDiario
+}
+
+interface FinestraPagina{
+    -gestPagina : GestorePagina
+}
+
+'Interazioni tra interfacce
+MainWindow --> FinestraDiario : apre
+FinestraDiario --> FinestraPagina : apre
+
+'Interazioni con interfacce
+MainWindow --> Applicazione : interagisce
+FinestraDiario --> GestoreDiario : interagisce
+FinestraPagina --> GestorePagina : interagisce
+
+'Relazioni
+Applicazione "1" *-- "1" ListaDiari : ha
+GestoreDiario "1" *-- "1" Diario : ha
+GestorePagina "1" *-- "1" Pagina : ha
+
+'Relazioni lettura scrittura
+Applicazione --> SalvaDiari : int.
+
+GestoreDiario --> SalvaDiario : int.
+
+GestorePagina --> SalvaPagina : int.
+
+'Relazioni strutture dati
+ListaDiari "1" *-- "0..*" InfoDiario : ha
+Diario "1" *-- "0..*" InfoPagina : ha
+
+@enduml
