@@ -6,18 +6,16 @@ using System.Threading.Tasks;
 
 namespace Progetto_diario
 {
-    internal class Diario
+    internal class Diario: InfoDiario
     {
-        private string nome;
-        private string dataCreazione;
        
 
         private string password;
         private bool diarioVaidato;
 
-        private List<Pagina> pagine;
+        private List<InfoPagina> pagine;
 
-        public Diario(string nome, string dataCreazione,string password, List<Pagina> pagine)
+        public Diario(InfoDiario diario,string nome, string dataCreazione,string password, List<InfoPagina> pagine): base(diario)
         {
             this.nome = nome;
             this.dataCreazione = dataCreazione;
@@ -33,37 +31,75 @@ namespace Progetto_diario
             }
            
         }
+
+
+
         public string getNome()
         {
-            return nome;
+            return this.nome;
         }
         public string getDataCreazione()
         {
-            return dataCreazione;
+            return this.dataCreazione;
+        }
+        public List<InfoPagina> getPagine()
+        {
+        if(!diarioVaidato)
+        {
+             return null;
+        }
+             return this.pagine;
+
+
         }
 
-        public void aggiungiPagina(Pagina pagina)
+        
+           
+            
+
+
+        public void aggiungiPagina(InfoPagina pagina)
         {
+            if (!diarioVaidato) { return; }
+
             pagine.Add(pagina);
         }
-        public List<Pagina> getPagine()
+        public void rimuoviPagina(InfoPagina pagina)
         {
-            if (diarioVaidato == true)
+            if (!diarioVaidato) { return; }
+            pagine.Remove(pagina);
+        }
+        public void modificaPassword(string Password, string nuovaPassword)
+        {
+            if (!diarioVaidato) { return; }
+            if(this.password== Password)
             {
-                return pagine;
-            }
-            else
-            {
-                return null;
+                this.password = nuovaPassword;
             }
         }
-        public bool verificaPassword(string passwordInserita)
+
+
+
+
+        public void setPassword(string Password)
+        {
+            if (!diarioVaidato) { return; }
+            this.password = Password;
+        }
+
+
+        public bool validaDiario(string password)
         {
             
-            diarioVaidato= password == passwordInserita;
+            diarioVaidato= this.password == password;
             return diarioVaidato;
 
         }
+        public bool isValidato()
+        {
+            return diarioVaidato;
+        }
+
 
     }
 }
