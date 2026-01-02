@@ -3,10 +3,24 @@
 'Classi base
 class Applicazione{
     -diari : ListaDiari
+
+    +Applicazione()
+
+    +getDiari() : List<InfoDiario>
+    +setDiario(diario: InfoDiario) : void
+    +aggiungiDiario() : void
 }
 
 class GestoreDiario{
     -diario: Diario
+
+    +GestoreDiario()
+
+    +getNome() : string
+    +getData() : Date
+    +getPagine() : List<InfoPagina>
+
+    +aggiungiPagina() : void
 }
 
 class GestorePagina{
@@ -28,6 +42,7 @@ class ListaDiari{
 
 class InfoDiario{
     -percorso : stirng
+    -id : int
     -nome : string
     -dataCreazione : Date
 
@@ -95,27 +110,15 @@ class Pagina extends InfoPagina{
     +getData() : Date
     +getContenuto() : string
     +getAllegati() : List<string>
-
 }
 
-'Salvataggio file
-class SalvaDiari{
-    -percorso : string
-
-    +SalvaDiari(percorso: string)
-    +getDiari() : List<InfoDiario>
-    +setDiari(diari: List<InfoDiario>) : void
+'Traduttori dati
+class TraduciDiari{
+    
 }
 
-class SalvaDiario{
-    -percorso : string
-
-    +SalvaDiario(percorso: string)
-    +getDiario() : List<InfoPagina>
-    +setDiario(diario: List<InfoPagina>) : void
-}
-
-class SalvaPagina{}
+class TraduciDiario{}
+class TraduciPagina{}
 
 'Interfacce utente
 interface MainWindow{
@@ -144,12 +147,10 @@ Applicazione "1" *-- "1" ListaDiari : ha
 GestoreDiario "1" *-- "1" Diario : ha
 GestorePagina "1" *-- "1" Pagina : ha
 
-'Relazioni lettura scrittura
-Applicazione --> SalvaDiari : int.
-
-GestoreDiario --> SalvaDiario : int.
-
-GestorePagina --> SalvaPagina : int.
+'Relazioni traduzione
+Applicazione --> TraduciDiari : int.
+GestoreDiario --> TraduciDiario : int.
+GestorePagina --> TraduciPagina : int.
 
 'Relazioni strutture dati
 ListaDiari "1" *-- "0..*" InfoDiario : ha
