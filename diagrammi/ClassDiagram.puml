@@ -1,14 +1,28 @@
 @startuml
 
+'Interfacce utente
+interface MainWindow{
+    -app : Applicazione
+}
+
+interface FinestraDiario{
+    -gestDiario : GestoreDiario
+}
+
+interface FinestraPagina{
+    -gestPagina : GestorePagina
+}
+
 'Classi base
 class Applicazione{
     -diari : ListaDiari
 
     +Applicazione()
 
-    +getDiari() : List<InfoDiario>
-    +setDiario(diario: InfoDiario) : void
-    +aggiungiDiario() : void
+    +getListaDiari() : ListaDiari
+
+    +salvaListaDiari() : void
+    +leggiListaDiari() : void
 }
 
 class GestoreDiario{
@@ -16,15 +30,21 @@ class GestoreDiario{
 
     +GestoreDiario()
 
-    +getNome() : string
-    +getData() : Date
-    +getPagine() : List<InfoPagina>
+    +getDiario() : Diario
 
-    +aggiungiPagina() : void
+    +salvaDiario() : void
+    +leggiDiario() : void
 }
 
 class GestorePagina{
     -pagina : Pagina
+
+    +GestorePagina()
+
+    +getPagina() : Pagina
+
+    +salvaPagina() : void
+    +leggiPagina() : void
 }
 
 'Strutture dati
@@ -112,25 +132,27 @@ class Pagina extends InfoPagina{
     +getAllegati() : List<string>
 }
 
-'Traduttori dati
-class TraduciDiari{
-    
+'Traduttori e salvataggio dati
+class Traduci{
+    +diariToFile(diari: ListaDiari) : string
+    +fileToDiari(file: string) : ListaDiari
+
+    +diarioToFile(diario: Diario) : string
+    +fileToDiario(file: string) : Diario
+
+    +paginaToFile(pagina: Pagina) : string
+    +fileToPagina(file: string) : Pagina
 }
 
-class TraduciDiario{}
-class TraduciPagina{}
+class Salva{
+    +salvaDiari(diari: ListaDiari) : void
+    +leggiDiari() : ListaDiari
 
-'Interfacce utente
-interface MainWindow{
-    -app : Applicazione
-}
+    +salvaDiario(diario: Diario) : void
+    +leggiDiario() : Diario
 
-interface FinestraDiario{
-    -gestDiario : GestoreDiario
-}
-
-interface FinestraPagina{
-    -gestPagina : GestorePagina
+    +salvaPagina(pagina: Pagina) : void
+    +leggiPagina() : Pagina
 }
 
 'Interazioni tra interfacce
@@ -148,9 +170,15 @@ GestoreDiario "1" *-- "1" Diario : ha
 GestorePagina "1" *-- "1" Pagina : ha
 
 'Relazioni traduzione
-Applicazione --> TraduciDiari : int.
-GestoreDiario --> TraduciDiario : int.
-GestorePagina --> TraduciPagina : int.
+Applicazione --> Traduci : int.
+GestoreDiario --> Traduci : int.
+GestorePagina --> Traduci : int.
+
+'Relazioni traduzione
+Applicazione --> Salva : int.
+GestoreDiario --> Salva : int.
+GestorePagina --> Salva : int.
+
 
 'Relazioni strutture dati
 ListaDiari "1" *-- "0..*" InfoDiario : ha

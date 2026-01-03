@@ -1,60 +1,78 @@
 @startuml
 
-'Classi base
-class Applicazione{}
-
-class GestoreDiario{}
-
-class GestorePagina{}
-
-'Strutture dati
-class ListaDiari{}
-
-class InfoDiario{}
-
-class Diario extends InfoDiario{}
-
-class InfoPagina{}
-
-class Pagina extends InfoPagina{}
-
-'Salvataggio file
-class SalvaDiari{}
-
-class SalvaDiario{}
-
-class SalvaPagina{}
+hide attributes
+hide methods
+hide members
 
 'Interfacce utente
-interface MainWindow{}
+interface MainWindow{
+}
 
-interface FinestraDiario{}
+interface FinestraDiario{
+}
 
-interface FinestraPagina{}
+interface FinestraPagina{
+}
+
+'Classi base
+class Applicazione{
+}
+
+class GestoreDiario{
+}
+
+class GestorePagina{
+}
+
+'Strutture dati
+class ListaDiari{
+}
+
+class InfoDiario{
+}
+
+class Diario extends InfoDiario{
+}
+
+class InfoPagina{
+}
+
+class Pagina extends InfoPagina{
+}
+
+'Traduttori e salvataggio dati
+class Traduci{
+}
+
+class Salva{
+}
 
 'Interazioni tra interfacce
-MainWindow --> FinestraDiario : apre
-FinestraDiario --> FinestraPagina : apre
+MainWindow --> FinestraDiario 
+FinestraDiario --> FinestraPagina 
 
 'Interazioni con interfacce
-MainWindow --> Applicazione : interagisce
-FinestraDiario --> GestoreDiario : interagisce
-FinestraPagina --> GestorePagina : interagisce
+MainWindow --> Applicazione 
+FinestraDiario --> GestoreDiario 
+FinestraPagina --> GestorePagina 
 
 'Relazioni
-Applicazione *-- ListaDiari : ha
-GestoreDiario *-- Diario : ha
-GestorePagina *-- Pagina : ha
+Applicazione *-- ListaDiari 
+GestoreDiario *-- Diario 
+GestorePagina *-- Pagina 
 
-'Relazioni lettura scrittura
-Applicazione --> SalvaDiari : int.
+'Relazioni traduzione
+Applicazione --> Traduci
+GestoreDiario --> Traduci
+GestorePagina --> Traduci
 
-GestoreDiario --> SalvaDiario : int.
-
-GestorePagina --> SalvaPagina : int.
+'Relazioni traduzione
+Applicazione --> Salva
+GestoreDiario --> Salva
+GestorePagina --> Salva
 
 'Relazioni strutture dati
-ListaDiari *-- InfoDiario : ha
-Diario *-- InfoPagina : ha
+ListaDiari *-- InfoDiario 
+Diario *-- InfoPagina 
 
 @enduml
