@@ -3,10 +3,14 @@
 'Interfacce utente
 interface MainWindow{
     -app : Applicazione
+
+    +apriDiario() : void
 }
 
 interface FinestraDiario{
     -gestDiario : GestoreDiario
+
+    +apriPagina() : void
 }
 
 interface FinestraPagina{
@@ -17,6 +21,7 @@ interface FinestraPagina{
 class Applicazione{
     -diari : ListaDiari
 
+    'Inizializza la lista diari
     +Applicazione()
 
     +getListaDiari() : ListaDiari
@@ -28,6 +33,7 @@ class Applicazione{
 class GestoreDiario{
     -diario: Diario
 
+    'Inizializza il diario
     +GestoreDiario()
 
     +getDiario() : Diario
@@ -37,12 +43,15 @@ class GestoreDiario{
 }
 
 class GestorePagina{
+    -infoPagina : InfoPagina
     -pagina : Pagina
 
+    'Inizializza la pagina
     +GestorePagina()
 
     +getPagina() : Pagina
 
+    'salva la pagina e aggiorna infoPagina
     +salvaPagina() : void
     +leggiPagina() : void
 }
@@ -55,21 +64,22 @@ class ListaDiari{
 
     +aggiungiDiario(diario: InfoDiario) : void
     +rimuoviDiario(diario: InfoDiario) : void
-    +modificaDiario(diario: InfoDiario) : void
 
     +getDiari() : List<InfoDiario>
 }
 
 class InfoDiario{
     -percorso : stirng
-    -id : int
     -nome : string
     -dataCreazione : Date
 
     +InfoDiario(percorso: string, nome: string, dataCreazione: Date)
 
-    'per interfacce di salvataggio
     +getPercorso() : string
+    +getNome() : string
+    +getDataCreazione() : Date
+
+    +setNome(nome: string) : void
 
     +ToString() : string
 }
@@ -83,17 +93,12 @@ class Diario extends InfoDiario{
     +Diario(diario: InfoDiario, password: string, pagine: List<InfoPagina>)
 
     'setter
-    +setNome(nome: string) : void
-
     +aggiungiPagina(pagina: InfoPagina) : void
     +rimuoviPagina(pagina: InfoPagina) : void
-    +modificaPagina(pagina: InfoPagina) : void
 
     +setPassword(password: string, nuovaPassword: string) : void
 
     'getter
-    +getNome() : string
-    +getData() : Date
     +getPagine() : List<InfoPagine>
 
     'sicurezza
@@ -108,6 +113,10 @@ class InfoPagina{
 
     +InfoPagina(percorso: string, numeroPagina: int, dataPagina: Date)
     +getPercorso() : string
+    +getNumeroPagina() : int
+    +getDataPagina() : Date
+
+    +setDataPagina(dataPagina: Date) : void
 
     +ToString() : string
 }
@@ -120,14 +129,11 @@ class Pagina extends InfoPagina{
 
     'setter
     +setContenuto(contenuto: string) : void
-    +setData(dataPagina : Date) : void
     
     +aggiungiAllegato(percorso: string) : void
     +rimuoviAllegato(percorso: string) : void
 
     'getter
-    +getNumero() : int
-    +getData() : Date
     +getContenuto() : string
     +getAllegati() : List<string>
 }
