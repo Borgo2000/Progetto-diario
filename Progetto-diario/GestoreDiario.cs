@@ -16,22 +16,20 @@ namespace Progetto_diario
         {
             this.diario = null;
         }
-        public string getNome()
+        public Diario GetDiario()
         {
-            return diario.getNome();
+            return diario;
+        }
 
-        }
-        public string getData()
+        public void salvaDiario(Diario diario)
         {
-            return diario.getDataCreazione();
+            Salva salva = new Salva();
+            salva.SalvaDiario(diario);
         }
-        public List<InfoPagina> getPagine()
+        public void leggiDiario()
         {
-            return diario.getPagine();
-        }
-        public void aggiungiPagina()
-        {
-            diario.aggiungiPagina(new InfoPagina("",0,""));
+            Salva salva = new Salva();
+            this.diario = salva.LeggiDiario();
         }
     }
 }

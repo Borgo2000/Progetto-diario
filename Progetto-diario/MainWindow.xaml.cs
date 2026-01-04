@@ -24,5 +24,13 @@ namespace Progetto_diario
         {
             InitializeComponent();
         }
+        private Applicazione app = new Applicazione();
+        public void apriDiario(object sender, RoutedEventArgs e)
+        {
+            Button btn = sender as Button;
+            string nomeDiario = btn.Content.ToString();
+            app.apriDiario(nomeDiario);
+        }
+        
     }
 }

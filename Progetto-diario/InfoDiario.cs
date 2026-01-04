@@ -8,45 +8,40 @@ namespace Progetto_diario
 {
     internal class InfoDiario
     {
-        static private int maxId = 0;
+       
 
 
         private string percorso;
-        private int id;
         protected string nome;
         protected string dataCreazione;
-       
 
-        public InfoDiario(string percorso, int id, string nome, string dataCreazione)
-        {
-            this.percorso = percorso;
-            this.nome = nome;
-            this.dataCreazione = dataCreazione;
-            this.id = id;
-            if(id>maxId)
-            {
-                maxId = id;
-            }
-        }
-
-        public InfoDiario(InfoDiario diario):this(diario.percorso, diario.id, diario.nome, diario.dataCreazione){}
 
         public InfoDiario(string percorso, string nome, string dataCreazione)
         {
             this.percorso = percorso;
             this.nome = nome;
             this.dataCreazione = dataCreazione;
-            maxId++;
-            this.id = maxId;
+
         }
+
+        //public InfoDiario(InfoDiario diario): this(diario.percorso, diario.nome, diario.dataCreazione){}
+      
 
         public string getPercorso()
         {
             return percorso;
         }
-        public int getId()
+       public string getNome()
         {
-            return id;
+            return nome;
+        }
+        public string getDataCreazione()
+        {
+            return dataCreazione;
+        }
+        public void setNome( string nome)
+        {
+            this.nome = nome;
         }
         public string toString()
         {

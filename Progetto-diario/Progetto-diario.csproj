@@ -56,9 +56,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Applicazione.cs" />
-    <Compile Include="TraduciDiari.cs" />
-    <Compile Include="TraduciDiario.cs" />
-    <Compile Include="TraduciPagina.cs" />
+    <Compile Include="GestorePagina.cs" />
+    <Compile Include="Salva.cs" />
+    <Compile Include="Traduci.cs" />
     <Page Include="FinestraDiario.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

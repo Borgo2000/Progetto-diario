@@ -18,16 +18,18 @@ namespace Progetto_diario
             return diari.getDiari();
         }
 
-        public void setDiario(InfoDiario diario)
-        {
-            
-            diari.modificaDiario(diario);
-        }
-        public void aggiungiDiario()
-        {
-            diari.aggiungiDiario(new InfoDiario("", "", ""));
-        }
        
+        public void salvaListaDiari(ListaDiari diari)
+        {
+            Salva salva = new Salva();
+            salva.salvaDiari(diari);
+            //salva la lista diari su file
+        }
+        public void leggiListaDiari()
+        {
+            //legge la lista diari da file
+        }
+
 
 
     }

@@ -31,11 +31,9 @@ namespace Progetto_diario
         {
             diari.Remove(diario);
         }
-        public void modificaDiario(InfoDiario diario)
-        {
-         //se il diario esiste lo modifico
+       
 
-        }
+
         
     }
 }

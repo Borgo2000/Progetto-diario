@@ -23,5 +23,12 @@ namespace Progetto_diario
         {
             InitializeComponent();
         }
+        private GestoreDiario gestoreDiario = new GestoreDiario();
+        public void apriPagina(object sender, RoutedEventArgs e)
+        {
+            Button btn = sender as Button;
+            string nomePagina = btn.Content.ToString();
+            gestoreDiario.GetDiario().apriPagina(nomePagina);
+        }
     }
 }

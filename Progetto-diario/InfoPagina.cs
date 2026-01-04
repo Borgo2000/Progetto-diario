@@ -44,6 +44,22 @@ namespace Progetto_diario
         {
             return percorso;
         }
+        public int getnumeroPagina()
+        {
+            return numeroPagina;
+        }
+        public string getDataPagina()
+        {
+            return dataPagina;
+        }
+
+
+        public void setDataPagina( string dataPagina)
+        {
+            this.dataPagina = dataPagina;
+        }
+
+
         public string toString()
         {
             return "Pagina numero: " + numeroPagina + " Data: " + dataPagina;

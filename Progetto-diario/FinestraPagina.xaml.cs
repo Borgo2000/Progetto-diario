@@ -24,9 +24,7 @@ namespace Progetto_diario
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
+        private GestorePagina gestorePagina = new GestorePagina();
 
-        }
     }
 }

@@ -69,22 +69,18 @@ namespace Progetto_diario
             if (!diarioVaidato) { return; }
             pagine.Remove(pagina);
         }
-        public void modificaPassword(string Password, string nuovaPassword)
+      
+
+
+
+
+        public void setPassword(string Password, string nuovaPassword)
         {
             if (!diarioVaidato) { return; }
-            if(this.password== Password)
+            if (this.password == Password)
             {
                 this.password = nuovaPassword;
             }
-        }
-
-
-
-
-        public void setPassword(string Password)
-        {
-            if (!diarioVaidato) { return; }
-            this.password = Password;
         }
 
 
