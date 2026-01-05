@@ -19,16 +19,15 @@ namespace Progetto_diario
         {
             return pagina;
         }
-        public void salvaPagina(Pagina pagina)
+        public void salvaPagina()
         {
-            Salva salva = new Salva();
-            salva.SalvaPagina(pagina);
+            
 
         }
         public void leggiPagina()
         {
-           Salva salvaPagina = new Salva();
-          pagina = salvaPagina.LeggiPagina();
+           
+         
         }
     }
 }

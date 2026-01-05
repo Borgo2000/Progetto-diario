@@ -8,25 +8,20 @@ namespace Progetto_diario
 {
     internal class InfoPagina
     {
-        static private int maxId =  0;
-    
+        
+
         private string percorso;
-        private int id;
         protected int numeroPagina;
         protected string dataPagina;
 
-        public InfoPagina(InfoPagina pagina): this(pagina.percorso,  pagina.id, pagina.numeroPagina, pagina.dataPagina){}
+        public InfoPagina(InfoPagina pagina): this(pagina.percorso, pagina.numeroPagina, pagina.dataPagina){}
 
         public InfoPagina(string percorso,int id, int numeroPagina, string dataPagina)
         {
             this.percorso = percorso;
             this.numeroPagina = numeroPagina;
             this.dataPagina = dataPagina;
-            this.id = id;
-            if (id>maxId)
-            {
-                maxId = id;
-            }
+           
             
         }
         public InfoPagina(string percorso, int numeroPagina, string dataPagina)
@@ -34,8 +29,7 @@ namespace Progetto_diario
             this.percorso = percorso;
             this.numeroPagina = numeroPagina;
             this.dataPagina = dataPagina;
-            maxId++;
-            this.id = maxId;
+            
         }
 
 

@@ -20,11 +20,14 @@ namespace Progetto_diario
     /// </summary>
     public partial class MainWindow : Window
     {
+        private Applicazione app = null;
         public MainWindow()
         {
             InitializeComponent();
+            app=new Applicazione();
+
         }
-        private Applicazione app = new Applicazione();
+        
         public void apriDiario(object sender, RoutedEventArgs e)
         {
             Button btn = sender as Button;

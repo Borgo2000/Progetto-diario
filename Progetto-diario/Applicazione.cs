@@ -19,10 +19,9 @@ namespace Progetto_diario
         }
 
        
-        public void salvaListaDiari(ListaDiari diari)
+        public void salvaListaDiari()
         {
-            Salva salva = new Salva();
-            salva.salvaDiari(diari);
+           
             //salva la lista diari su file
         }
         public void leggiListaDiari()
