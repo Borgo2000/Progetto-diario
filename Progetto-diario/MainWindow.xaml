@@ -5,13 +5,31 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Progetto_diario"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="550" Width="900">
     <Grid>
-        <ListBox d:ItemsSource="{d:SampleData ItemCount=5}" Margin="303,93,361,217"/>
-        <Button x:Name="button_apriDiario" Content="Apri diario" HorizontalAlignment="Left" Margin="294,274,0,0" VerticalAlignment="Top" Height="65" Width="145"/>
-        <Button x:Name="button_aggiungi" Content="aggiungi" HorizontalAlignment="Left" Height="65" Margin="526,274,0,0" VerticalAlignment="Top" Width="124"/>
-        <Button x:Name="button_elimina" Content="elimina" HorizontalAlignment="Left" Height="65" Margin="82,274,0,0" VerticalAlignment="Top" Width="112"/>
-        <Label x:Name="label_stato" Content="aperto" HorizontalAlignment="Left" Height="30" Margin="634,379,0,0" VerticalAlignment="Top" Width="132"/>
+        <Button x:Name="button_apriDiario" Content="Apri diario" HorizontalAlignment="Left" Margin="489,409,0,0" VerticalAlignment="Top" Height="65" Width="145"/>
+        <Button x:Name="button_aggiungi" Content="aggiungi" HorizontalAlignment="Left" Height="65" Margin="736,414,0,0" VerticalAlignment="Top" Width="124"/>
+        <Button x:Name="button_elimina" Content="elimina" HorizontalAlignment="Left" Height="65" Margin="305,414,0,0" VerticalAlignment="Top" Width="112"/>
+        <Label x:Name="label_stato" Content="aperto" HorizontalAlignment="Left" Height="30" Margin="126,442,0,0" VerticalAlignment="Top" Width="132"/>
+        <Label x:Name="Label_menu" Content="MENU" HorizontalAlignment="Left" Height="39" Margin="32,20,0,0" VerticalAlignment="Top" Width="140" Background="White" BorderThickness="2,2,2,2" FontSize="16" FontWeight="Bold" BorderBrush="Black"/>
+        <Rectangle x:Name="rect_img2" HorizontalAlignment="Left" Height="134" Margin="205,111,0,0" Stroke="Black" VerticalAlignment="Top" Width="148" RenderTransformOrigin="0.5,0.5">
+            <Rectangle.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="0.184"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Rectangle.RenderTransform>
+            <Rectangle.Fill>
+                <ImageBrush ImageSource="/diario2.png" Stretch="Uniform" TileMode="None"/>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Rectangle x:Name="rect_img1" HorizontalAlignment="Left" Height="134" Margin="46,110,0,0" Stroke="Black" VerticalAlignment="Top" Width="148">
+            <Rectangle.Fill>
+                <ImageBrush ImageSource="/diario1.png" Stretch="Uniform"/>
+            </Rectangle.Fill>
+        </Rectangle>
 
     </Grid>
 </Window>
