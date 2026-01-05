@@ -8,12 +8,9 @@ namespace Progetto_diario
 {
     internal class GestorePagina
     {
-        InfoPagina infoPagina;
         Pagina pagina;
-        public GestorePagina()
-        {
-            infoPagina = null;
-            pagina = null;
+        public GestorePagina(){
+            leggiPagina();
         }
         public Pagina GetPagina()
         {
@@ -26,8 +23,7 @@ namespace Progetto_diario
         }
         public void leggiPagina()
         {
-           
-         
+            pagina = Salva.LeggiPagina();
         }
     }
 }

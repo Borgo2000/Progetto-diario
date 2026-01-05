@@ -11,25 +11,20 @@ namespace Progetto_diario
     {
         private Diario diario;
         
-
-        public GestoreDiario()
-        {
-            this.diario = null;
+        public GestoreDiario(){
+            leggiDiario();
         }
-        public Diario GetDiario()
-        {
+
+        public Diario GetDiario(){
             return diario;
         }
 
-        public void salvaDiario(Diario diario)
-        {
-            Salva salva = new Salva();
-            salva.SalvaDiario(diario);
+        public void salvaDiario(Diario diario) {
+            Salva.SalvaDiario(diario);
         }
-        public void leggiDiario()
-        {
-            Salva salva = new Salva();
-            this.diario = salva.LeggiDiario();
+
+        public void leggiDiario() { 
+            this.diario = Salva.LeggiDiario();
         }
     }
 }

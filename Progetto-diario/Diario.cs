@@ -8,91 +8,48 @@ namespace Progetto_diario
 {
     internal class Diario: InfoDiario
     {
-       
-
         private string password;
         private bool diarioVaidato;
 
         private List<InfoPagina> pagine;
 
-        public Diario(InfoDiario diario,string nome, string dataCreazione,string password, List<InfoPagina> pagine): base(diario)
-        {
-            this.nome = nome;
-            this.dataCreazione = dataCreazione;
+        public Diario(InfoDiario diario, string password, List<InfoPagina> pagine): base(diario) {
             this.pagine = pagine;
             this.password = password;
-            if(password=="")
-            {
-                diarioVaidato = true;
-            }
-            else
-            {
-                diarioVaidato = false;
-            }
-           
+            this.diarioVaidato = password == "";
         }
 
-
-
-        public string getNome()
-        {
-            return this.nome;
-        }
-        public string getDataCreazione()
-        {
-            return this.dataCreazione;
-        }
-        public List<InfoPagina> getPagine()
-        {
-        if(!diarioVaidato)
-        {
-             return null;
-        }
-             return this.pagine;
-
-
-        }
-
-        
-           
-            
-
-
-        public void aggiungiPagina(InfoPagina pagina)
-        {
-            if (!diarioVaidato) { return; }
+        public void aggiungiPagina(InfoPagina pagina){
+            if (!isValidato()) return;
 
             pagine.Add(pagina);
         }
-        public void rimuoviPagina(InfoPagina pagina)
-        {
-            if (!diarioVaidato) { return; }
+
+        public void rimuoviPagina(InfoPagina pagina){
+            if (!isValidato()) return;
+
             pagine.Remove(pagina);
         }
-      
 
-
-
-
-        public void setPassword(string Password, string nuovaPassword)
-        {
-            if (!diarioVaidato) { return; }
-            if (this.password == Password)
-            {
+        public void setPassword(string password, string nuovaPassword){
+            if (this.password == password)
                 this.password = nuovaPassword;
-            }
         }
 
 
-        public bool validaDiario(string password)
-        {
-            
-            diarioVaidato= this.password == password;
-            return diarioVaidato;
+        public List<InfoPagina> getPagine(){
+            if(!isValidato()) return null;
 
+             return pagine;
         }
-        public bool isValidato()
-        {
+
+
+        public void validaDiario(string password) {
+            if (this.password == password)
+                diarioVaidato = true;
+        }
+
+        public bool isValidato(){
             return diarioVaidato;
         }
 
