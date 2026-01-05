@@ -17,15 +17,17 @@ interface FinestraPagina{
     -gestPagina : GestorePagina
 }
 
-'Classi base
+'Classi di gestione dati x interfacce
 class Applicazione{
     -diari : ListaDiari
 
-    'Inizializza la lista diari
+    'Inizializza la lista diari tramite classe Salva
     +Applicazione()
 
+    'Permette a MainWindow di interfacciarsi con ListaDiari
     +getListaDiari() : ListaDiari
 
+    'Metodi per salvataggio su disco
     +salvaListaDiari() : void
     +leggiListaDiari() : void
 }
@@ -36,22 +38,24 @@ class GestoreDiario{
     'Inizializza il diario
     +GestoreDiario()
 
+    'Permette a FinestraDiario di interfacciarsi con Diario
     +getDiario() : Diario
 
+    'Metodi per salvataggio su disco
     +salvaDiario() : void
     +leggiDiario() : void
 }
 
 class GestorePagina{
-    -infoPagina : InfoPagina
     -pagina : Pagina
 
     'Inizializza la pagina
     +GestorePagina()
 
+    'Permette a FinestraDiario di interfacciarsi con Diario
     +getPagina() : Pagina
 
-    'salva la pagina e aggiorna infoPagina
+    'Metodi per salvataggio su disco
     +salvaPagina() : void
     +leggiPagina() : void
 }
@@ -102,7 +106,7 @@ class Diario extends InfoDiario{
     +getPagine() : List<InfoPagine>
 
     'sicurezza
-    +validaDiario(password: string) : bool
+    +validaDiario(password: string) : void
     +isValidato() : bool
 }
 
@@ -170,17 +174,17 @@ MainWindow --> Applicazione : interagisce
 FinestraDiario --> GestoreDiario : interagisce
 FinestraPagina --> GestorePagina : interagisce
 
-'Relazioni
+'Relazioni finestre-gestori
 Applicazione "1" *-- "1" ListaDiari : ha
 GestoreDiario "1" *-- "1" Diario : ha
 GestorePagina "1" *-- "1" Pagina : ha
 
-'Relazioni traduzione
+'Relazioni gestori-traduzione
 Applicazione --> Traduci : int.
 GestoreDiario --> Traduci : int.
 GestorePagina --> Traduci : int.
 
-'Relazioni traduzione
+'Relazioni gestori-salvataggio
 Applicazione --> Salva : int.
 GestoreDiario --> Salva : int.
 GestorePagina --> Salva : int.
