@@ -24,7 +24,7 @@ namespace Progetto_diario
             InitializeComponent();
         }
 
-        private GestorePagina gestorePagina = new GestorePagina();
+        //private GestorePagina gestorePagina = new GestorePagina();
 
     }
 }

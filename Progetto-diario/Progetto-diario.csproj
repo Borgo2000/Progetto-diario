@@ -139,5 +139,8 @@
   <ItemGroup>
     <Resource Include="piu.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="lucchetto.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
