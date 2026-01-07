@@ -7,12 +7,11 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="550" Width="900">
     <Grid>
-        <Button x:Name="button_apriDiario" Content="Apri diario" HorizontalAlignment="Left" Margin="489,409,0,0" VerticalAlignment="Top" Height="65" Width="145"/>
-        <Button x:Name="button_aggiungi" Content="aggiungi" HorizontalAlignment="Left" Height="65" Margin="736,414,0,0" VerticalAlignment="Top" Width="124"/>
-        <Button x:Name="button_elimina" Content="elimina" HorizontalAlignment="Left" Height="65" Margin="305,414,0,0" VerticalAlignment="Top" Width="112"/>
+        <Button x:Name="button_apriDiario" Content="Apri diario" HorizontalAlignment="Left" Margin="538,377,0,0" VerticalAlignment="Top" Height="55" Width="147"/>
+        <Button x:Name="button_elimina" Content="elimina" HorizontalAlignment="Left" Height="66" Margin="304,424,0,0" VerticalAlignment="Top" Width="112"/>
         <Label x:Name="label_stato" Content="aperto" HorizontalAlignment="Left" Height="30" Margin="126,442,0,0" VerticalAlignment="Top" Width="132"/>
-        <Label x:Name="Label_menu" Content="MENU" HorizontalAlignment="Left" Height="39" Margin="32,20,0,0" VerticalAlignment="Top" Width="140" Background="White" BorderThickness="2,2,2,2" FontSize="16" FontWeight="Bold" BorderBrush="Black"/>
-        <Rectangle x:Name="rect_img2" HorizontalAlignment="Left" Height="134" Margin="205,111,0,0" Stroke="Black" VerticalAlignment="Top" Width="148" RenderTransformOrigin="0.5,0.5">
+        <Label x:Name="Label_menu" Content="MENU" HorizontalAlignment="Left" Height="47" Margin="46,20,0,0" VerticalAlignment="Top" Width="148" Background="White" BorderThickness="2,2,2,2" FontSize="20" FontWeight="Bold" BorderBrush="Black"/>
+        <Rectangle x:Name="rect_img2" HorizontalAlignment="Left" Height="134" Margin="244,123,0,0" Stroke="Black" VerticalAlignment="Top" Width="148" RenderTransformOrigin="0.5,0.5">
             <Rectangle.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -25,9 +24,25 @@
                 <ImageBrush ImageSource="/diario2.png" Stretch="Uniform" TileMode="None"/>
             </Rectangle.Fill>
         </Rectangle>
-        <Rectangle x:Name="rect_img1" HorizontalAlignment="Left" Height="134" Margin="46,110,0,0" Stroke="Black" VerticalAlignment="Top" Width="148">
+        <Rectangle x:Name="rect_img1" HorizontalAlignment="Left" Height="134" Margin="46,123,0,0" Stroke="Black" VerticalAlignment="Top" Width="148">
             <Rectangle.Fill>
                 <ImageBrush ImageSource="/diario1.png" Stretch="Uniform"/>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Rectangle x:Name="rect_img3" HorizontalAlignment="Left" Height="134" Margin="442,123,0,0" Stroke="Black" VerticalAlignment="Top" Width="147">
+            <Rectangle.Fill>
+                <ImageBrush ImageSource="/Progetto senza titolo.png" Stretch="Uniform"/>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Rectangle x:Name="rect_img7" HorizontalAlignment="Left" Height="134" Margin="640,123,0,0" Stroke="Black" VerticalAlignment="Top" Width="147">
+            <Rectangle.Fill>
+                <ImageBrush ImageSource="/diario7.png" Stretch="Uniform"/>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Rectangle HorizontalAlignment="Left" Height="1" Margin="386,-198,0,0" Stroke="Black" VerticalAlignment="Top" Width="4"/>
+        <Rectangle x:Name="rect_button_aggiungi" HorizontalAlignment="Left" Height="134" Margin="46,288,0,0" Stroke="Black" VerticalAlignment="Top" Width="148">
+            <Rectangle.Fill>
+                <ImageBrush ImageSource="/piu.png"/>
             </Rectangle.Fill>
         </Rectangle>
 
