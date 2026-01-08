@@ -69,26 +69,28 @@ class ListaDiari{
     +aggiungiDiario(diario: InfoDiario) : void
     +rimuoviDiario(diario: InfoDiario) : void
 
-    +getDiari() : List<InfoDiario>
+    +getDiari() : List<InfoDiario> copia
 }
 
 class InfoDiario{
     -percorso : stirng
-    -nome : string
+    -numeroDiario : int
     -dataCreazione : Date
+    #nome : string
 
-    +InfoDiario(percorso: string, nome: string, dataCreazione: Date)
+    +InfoDiario(percorso: string, numeroDiario: int, nome: string, dataCreazione: Date)
 
     +getPercorso() : string
-    +getNome() : string
+    +getNumeroDiario() : int
     +getDataCreazione() : Date
-
-    +setNome(nome: string) : void
+    +getNome() : string
 
     +ToString() : string
 }
 
 class Diario extends InfoDiario{
+    -infoDiario : InfoDiario
+
     -pagine : List<InfoPagina>
     
     -password : string
@@ -97,13 +99,15 @@ class Diario extends InfoDiario{
     +Diario(diario: InfoDiario, password: string, pagine: List<InfoPagina>)
 
     'setter
+    +setNome(nome: string) : void
+
     +aggiungiPagina(pagina: InfoPagina) : void
     +rimuoviPagina(pagina: InfoPagina) : void
 
     +setPassword(password: string, nuovaPassword: string) : void
 
     'getter
-    +getPagine() : List<InfoPagine>
+    +getPagine() : List<InfoPagine> copia
 
     'sicurezza
     +validaDiario(password: string) : void
@@ -113,25 +117,28 @@ class Diario extends InfoDiario{
 class InfoPagina{
     -percorso : stirng
     -numeroPagina : int
-    -dataPagina : Date
+    #dataPagina : Date
 
     +InfoPagina(percorso: string, numeroPagina: int, dataPagina: Date)
     +getPercorso() : string
     +getNumeroPagina() : int
     +getDataPagina() : Date
 
-    +setDataPagina(dataPagina: Date) : void
 
     +ToString() : string
 }
 
 class Pagina extends InfoPagina{
+    -infoPagina : InfoPagina
+
     -contenuto : string
     -allegati : List<string>
 
     +Pagina(pagina: InfoPagina, contenuto: string, allegati: List<string>)
 
     'setter
+    +setDataPagina(dataPagina: Date) : void
+
     +setContenuto(contenuto: string) : void
     
     +aggiungiAllegato(percorso: string) : void
@@ -139,7 +146,7 @@ class Pagina extends InfoPagina{
 
     'getter
     +getContenuto() : string
-    +getAllegati() : List<string>
+    +getAllegati() : List<string> copia
 }
 
 'Traduttori e salvataggio dati
@@ -179,16 +186,13 @@ Applicazione "1" *-- "1" ListaDiari : ha
 GestoreDiario "1" *-- "1" Diario : ha
 GestorePagina "1" *-- "1" Pagina : ha
 
-'Relazioni gestori-traduzione
-Applicazione --> Traduci : int.
-GestoreDiario --> Traduci : int.
-GestorePagina --> Traduci : int.
-
 'Relazioni gestori-salvataggio
 Applicazione --> Salva : int.
 GestoreDiario --> Salva : int.
 GestorePagina --> Salva : int.
 
+'Relazione salvataggio-traduzione
+Salva --> Traduci : int.
 
 'Relazioni strutture dati
 ListaDiari "1" *-- "0..*" InfoDiario : ha
