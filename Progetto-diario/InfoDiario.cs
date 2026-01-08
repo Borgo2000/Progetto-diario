@@ -9,32 +9,35 @@ namespace Progetto_diario
     internal class InfoDiario
     {
         private string percorso;
-        private string nome;
+        private int numeroDiario
         private string dataCreazione;
 
-        public InfoDiario(string percorso, string nome, string dataCreazione){
+        protected string nome;
+
+        public InfoDiario(string percorso, int numeroDiaio, string nome, string dataCreazione){
             this.percorso = percorso;
             this.nome = nome;
             this.dataCreazione = dataCreazione;
         }
 
-        public InfoDiario(InfoDiario diario) : this(diario.percorso, diario.nome, diario.dataCreazione){}
+        public InfoDiario(InfoDiario diario) : this(diario.percorso, diario.numeroDiario, diario.nome, diario.dataCreazione){}
       
         public string getPercorso(){
             return percorso;
         }
 
-        public string getNome(){
-            return nome;
+        public int getNumeroDiario(){
+            return numeroDiario;
         }
 
         public string getDataCreazione(){
             return dataCreazione;
         }
 
-        public void setNome(string nome){
-            this.nome = nome;
+        public string getNome(){
+            return nome;
         }
+
 
         public string toString(){
             return nome + " " + dataCreazione;

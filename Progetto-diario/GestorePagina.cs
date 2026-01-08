@@ -9,20 +9,20 @@ namespace Progetto_diario
     internal class GestorePagina
     {
         Pagina pagina;
+
         public GestorePagina(){
             leggiPagina();
         }
-        public Pagina GetPagina()
-        {
+
+        public Pagina getPagina(){
             return pagina;
         }
-        public void salvaPagina()
-        {
-            
 
+        public void salvaPagina(){  
+            Salva.SalvaPagina(pagina);
         }
-        public void leggiPagina()
-        {
+
+        public void leggiPagina(){
             pagina = Salva.LeggiPagina();
         }
     }

@@ -10,7 +10,7 @@ namespace Progetto_diario
     {
         private string percorso;
         private int numeroPagina;
-        private string dataPagina;
+        protected string dataPagina;
 
         public InfoPagina(string percorso, int numeroPagina, string dataPagina){
             this.percorso = percorso;
@@ -32,12 +32,7 @@ namespace Progetto_diario
         public string getDataPagina(){
             return dataPagina;
         }
-
-
-        public void setDataPagina(string dataPagina){
-            this.dataPagina = dataPagina;
-        }
-
+        
         public string toString(){
             return "P." + numeroPagina + " " + dataPagina;
         }

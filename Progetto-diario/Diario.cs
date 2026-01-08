@@ -8,15 +8,24 @@ namespace Progetto_diario
 {
     internal class Diario: InfoDiario
     {
+        private InfoDiario infoDiario;
+
         private string password;
         private bool diarioVaidato;
 
         private List<InfoPagina> pagine;
 
         public Diario(InfoDiario diario, string password, List<InfoPagina> pagine): base(diario) {
+            this.infoDiario = diario;
+
             this.pagine = pagine;
             this.password = password;
             this.diarioVaidato = password == "";
+        }
+
+        public void setNome(string nome){
+            this.nome = nome;
+            this.infoDiario.nome = nome;
         }
 
         public void aggiungiPagina(InfoPagina pagina){
@@ -40,7 +49,7 @@ namespace Progetto_diario
         public List<InfoPagina> getPagine(){
             if(!isValidato()) return null;
 
-             return pagine;
+            return pagine.AsReadOnly();
         }
 
 

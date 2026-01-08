@@ -22,7 +22,7 @@ namespace Progetto_diario
         }
 
         public List<InfoDiario> getDiari(){
-            return diari;
+            return diari.AsReadOnly();
         }
     }
 }

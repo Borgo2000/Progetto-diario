@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Media.Animation;
 
 namespace Progetto_diario
 {
@@ -15,12 +14,12 @@ namespace Progetto_diario
             leggiDiario();
         }
 
-        public Diario GetDiario(){
+        public Diario getDiario(){
             return diario;
         }
 
-        public void salvaDiario(Diario diario) {
-            Salva.SalvaDiario(diario);
+        public void salvaDiario() {
+            Salva.SalvaDiario(this.diario);
         }
 
         public void leggiDiario() { 

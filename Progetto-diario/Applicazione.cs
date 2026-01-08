@@ -19,13 +19,11 @@ namespace Progetto_diario
         }
        
         public void salvaListaDiari() {
-            //salva la lista diari su file
-            Salva.SalvaDiari(this.diari);
+            Salva.SalvaDiari(diari);
         }
 
         public void leggiListaDiari() {
-            //legge la lista diari da file
-            this.diari = Salva.LeggiDiari();
+            diari = Salva.LeggiDiari();
         }
     }
 }
