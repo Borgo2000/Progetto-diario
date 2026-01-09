@@ -24,7 +24,7 @@ namespace Progetto_diario
         public MainWindow()
         {
             InitializeComponent();
-            app=new Applicazione();
+            app = new Applicazione();
 
         }
 

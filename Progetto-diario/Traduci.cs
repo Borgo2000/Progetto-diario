@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 namespace Progetto_diario
 {
     internal class Traduci
-    {        
+    {
         public static string diariToFile(ListaDiari diari)
         {
-           return "";
+            return "";
         }
         public static ListaDiari fileToDiari(string file)
         {

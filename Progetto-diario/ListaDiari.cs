@@ -10,18 +10,22 @@ namespace Progetto_diario
     {
         private List<InfoDiario> diari;
 
-        public ListaDiari(List<InfoDiario> diari){
+        public ListaDiari(List<InfoDiario> diari)
+        {
             this.diari = diari;
         }
 
-        public void aggiungiDiario(InfoDiario diario){
+        public void aggiungiDiario(InfoDiario diario)
+        {
             diari.Add(diario);
         }
-        public void rimuoviDiario(InfoDiario diario){
+        public void rimuoviDiario(InfoDiario diario)
+        {
             diari.Remove(diario);
         }
 
-        public List<InfoDiario> getDiari(){
+        public List<InfoDiario> getDiari()
+        {
             return diari.AsReadOnly();
         }
     }

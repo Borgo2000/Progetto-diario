@@ -9,20 +9,24 @@ namespace Progetto_diario
     internal class GestoreDiario
     {
         private Diario diario;
-        
-        public GestoreDiario(){
+
+        public GestoreDiario()
+        {
             leggiDiario();
         }
 
-        public Diario getDiario(){
+        public Diario getDiario()
+        {
             return diario;
         }
 
-        public void salvaDiario() {
+        public void salvaDiario()
+        {
             Salva.SalvaDiario(this.diario);
         }
 
-        public void leggiDiario() { 
+        public void leggiDiario()
+        {
             this.diario = Salva.LeggiDiario();
         }
     }

@@ -10,19 +10,23 @@ namespace Progetto_diario
     {
         private ListaDiari diari;
 
-        public Applicazione() {
+        public Applicazione()
+        {
             leggiListaDiari();
         }
 
-        public ListaDiari getListaDiari() {
+        public ListaDiari getListaDiari()
+        {
             return diari;
         }
-       
-        public void salvaListaDiari() {
+
+        public void salvaListaDiari()
+        {
             Salva.SalvaDiari(diari);
         }
 
-        public void leggiListaDiari() {
+        public void leggiListaDiari()
+        {
             diari = Salva.LeggiDiari();
         }
     }

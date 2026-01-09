@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Progetto_diario
 {
-    internal class Diario: InfoDiario
+    internal class Diario : InfoDiario
     {
         private InfoDiario infoDiario;
 
@@ -15,7 +15,8 @@ namespace Progetto_diario
 
         private List<InfoPagina> pagine;
 
-        public Diario(InfoDiario diario, string password, List<InfoPagina> pagine): base(diario) {
+        public Diario(InfoDiario diario, string password, List<InfoPagina> pagine) : base(diario)
+        {
             this.infoDiario = diario;
 
             this.pagine = pagine;
@@ -23,42 +24,49 @@ namespace Progetto_diario
             this.diarioVaidato = password == "";
         }
 
-        public void setNome(string nome){
+        public void setNome(string nome)
+        {
             this.nome = nome;
             this.infoDiario.nome = nome;
         }
 
-        public void aggiungiPagina(InfoPagina pagina){
+        public void aggiungiPagina(InfoPagina pagina)
+        {
             if (!isValidato()) return;
 
             pagine.Add(pagina);
         }
 
-        public void rimuoviPagina(InfoPagina pagina){
+        public void rimuoviPagina(InfoPagina pagina)
+        {
             if (!isValidato()) return;
 
             pagine.Remove(pagina);
         }
 
-        public void setPassword(string password, string nuovaPassword){
+        public void setPassword(string password, string nuovaPassword)
+        {
             if (this.password == password)
                 this.password = nuovaPassword;
         }
 
 
-        public List<InfoPagina> getPagine(){
-            if(!isValidato()) return null;
+        public List<InfoPagina> getPagine()
+        {
+            if (!isValidato()) return null;
 
             return pagine.AsReadOnly();
         }
 
 
-        public void validaDiario(string password) {
+        public void validaDiario(string password)
+        {
             if (this.password == password)
                 diarioVaidato = true;
         }
 
-        public bool isValidato(){
+        public bool isValidato()
+        {
             return diarioVaidato;
         }
 

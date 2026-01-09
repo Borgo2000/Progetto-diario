@@ -128,19 +128,13 @@
     <Resource Include="diario3.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Progetto senza titolo.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="diario7.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="piu.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="piu.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="lucchetto.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="piu1.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
