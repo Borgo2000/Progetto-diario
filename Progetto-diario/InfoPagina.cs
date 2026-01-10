@@ -12,30 +12,35 @@ namespace Progetto_diario
         private int numeroPagina;
         protected string dataPagina;
 
-        public InfoPagina(string percorso, int numeroPagina, string dataPagina){
+        public InfoPagina(string percorso, int numeroPagina, string dataPagina)
+        {
             this.percorso = percorso;
             this.numeroPagina = numeroPagina;
             this.dataPagina = dataPagina;
         }
 
-        public InfoPagina(InfoPagina pagina) : this(pagina.percorso, pagina.numeroPagina, pagina.dataPagina) {}
+        public InfoPagina(InfoPagina pagina) : this(pagina.percorso, pagina.numeroPagina, pagina.dataPagina) { }
 
 
-        public string getPercorso(){
+        public string getPercorso()
+        {
             return percorso;
         }
 
-        public int getnumeroPagina(){
+        public int getnumeroPagina()
+        {
             return numeroPagina;
         }
 
-        public string getDataPagina(){
+        public string getDataPagina()
+        {
             return dataPagina;
         }
-        
-        public string toString(){
+
+        public string toString()
+        {
             return "P." + numeroPagina + " " + dataPagina;
         }
-        
+
     }
 }

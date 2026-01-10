@@ -20,13 +20,14 @@ namespace Progetto_diario
     /// </summary>
     public partial class MainWindow : Window
     {
-        private Applicazione app = null;
+        //private Applicazione app = null;
         public MainWindow()
         {
             InitializeComponent();
-            app = new Applicazione();
+            ////app = new Applicazione();
 
         }
+       
 
         //public void apriDiario(object sender, RoutedEventArgs e)
         //{
@@ -34,17 +35,21 @@ namespace Progetto_diario
         //    string nomeDiario = btn.Content.ToString();
         //    app.apriDiario(nomeDiario);
         //}
-        //private void AggiornaLabelStato() { 
-        //    if (diarioSelezionato == null) return; 
-        //    if (diarioSelezionato.ProtettoDaPassword) {
-        //        label_stato.Content = "🔒 Protetto da password"; 
-        //        label_stato.Foreground = Brushes.DarkGoldenrod; 
-        //        label_stato.Background = Brushes.LightYellow; 
-        //    } else { 
-        //        label_stato.Content = "🟢 Accesso libero"; 
-        //        label_stato.Foreground = Brushes.Green; 
-        //        label_stato.Background = Brushes.LightGreen; 
-        //    } 
+        //private void AggiornaLabelStato()
+        //{
+        //    if (diarioSelezionato == null) return;
+        //    if (diarioSelezionato.ProtettoDaPassword)
+        //    {
+        //        label_stato.Content = "🔒 Protetto da password";
+        //        label_stato.Foreground = Brushes.DarkGoldenrod;
+        //        label_stato.Background = Brushes.LightYellow;
+        //    }
+        //    else
+        //    {
+        //        label_stato.Content = "🟢 Accesso libero";
+        //        label_stato.Foreground = Brushes.Green;
+        //        label_stato.Background = Brushes.LightGreen;
+        //    }
         //}
         //private void button_apriDiario_Click(object sender, RoutedEventArgs e)
         //{
@@ -59,5 +64,6 @@ namespace Progetto_diario
         //      // } else { MessageBox.Show("Diario aperto!"); 
         //      // Apri diario...
         //      // } }
-            }
+        //    }
+    }
 }
