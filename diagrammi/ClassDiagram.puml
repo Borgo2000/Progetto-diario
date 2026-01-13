@@ -20,12 +20,15 @@ interface FinestraPagina{
 'Classi di gestione dati x interfacce
 class Applicazione{
     -diari : ListaDiari
+    -numeroDiari : int
 
     'Inizializza la lista diari tramite classe Salva
     +Applicazione()
 
-    'Permette a MainWindow di interfacciarsi con ListaDiari
-    +getListaDiari() : ListaDiari
+    +aggiungiDiario(nome: string, dataCreazione: ) : void
+    +rimuoviDiario(diario: InfoDiario) : void
+
+    +getDiari() : Lista<InfoDiario> copia
 
     'Metodi per salvataggio su disco
     +salvaListaDiari() : void
@@ -33,13 +36,19 @@ class Applicazione{
 }
 
 class GestoreDiario{
-    -diario: Diario
+    -diario : Diario
+    -numeroPagine : int
 
     'Inizializza il diario
     +GestoreDiario()
 
-    'Permette a FinestraDiario di interfacciarsi con Diario
-    +getDiario() : Diario
+    +setNome(nome: string) : void
+    +aggiungiPagina(pagina: InfoPagina) : void
+    +rimuoviPagina(pagina: InfoPagina) : void
+    +setPassword(password: string, nuovaPassword: string) : void
+
+    +validaDiario(password: string) : void
+    +isValidato() : bool
 
     'Metodi per salvataggio su disco
     +salvaDiario() : void
@@ -52,8 +61,14 @@ class GestorePagina{
     'Inizializza la pagina
     +GestorePagina()
 
-    'Permette a FinestraDiario di interfacciarsi con Diario
-    +getPagina() : Pagina
+    +setDataPagina(dataPagina: Date) : void
+    +setContenuto(contenuto: string) : void
+
+    +aggiungiAllegato(percorso: string) : void
+    +rimuoviAllegato(percorso: string) : void
+
+    +getContenuto() : string
+    +getAllegati() : List<string>
 
     'Metodi per salvataggio su disco
     +salvaPagina() : void
@@ -66,17 +81,14 @@ class ListaDiari{
 
     +ListaDiari(diari: List<InfoDiario>) : void
 
-    +aggiungiDiario(diario: InfoDiario) : void
-    +rimuoviDiario(diario: InfoDiario) : void
-
-    +getDiari() : List<InfoDiario> copia
+    +getDiari() : List<InfoDiario>
 }
 
 class InfoDiario{
     -percorso : stirng
     -numeroDiario : int
     -dataCreazione : Date
-    #nome : string
+    -nome : string
 
     +InfoDiario(percorso: string, numeroDiario: int, nome: string, dataCreazione: Date)
 
@@ -89,8 +101,6 @@ class InfoDiario{
 }
 
 class Diario extends InfoDiario{
-    -infoDiario : InfoDiario
-
     -pagine : List<InfoPagina>
     
     -password : string
@@ -100,14 +110,10 @@ class Diario extends InfoDiario{
 
     'setter
     +setNome(nome: string) : void
-
-    +aggiungiPagina(pagina: InfoPagina) : void
-    +rimuoviPagina(pagina: InfoPagina) : void
-
     +setPassword(password: string, nuovaPassword: string) : void
 
     'getter
-    +getPagine() : List<InfoPagine> copia
+    +getPagine() : List<InfoPagine>
 
     'sicurezza
     +validaDiario(password: string) : void
@@ -117,20 +123,17 @@ class Diario extends InfoDiario{
 class InfoPagina{
     -percorso : stirng
     -numeroPagina : int
-    #dataPagina : Date
+    -dataPagina : Date
 
     +InfoPagina(percorso: string, numeroPagina: int, dataPagina: Date)
     +getPercorso() : string
     +getNumeroPagina() : int
     +getDataPagina() : Date
 
-
     +ToString() : string
 }
 
 class Pagina extends InfoPagina{
-    -infoPagina : InfoPagina
-
     -contenuto : string
     -allegati : List<string>
 
@@ -138,15 +141,11 @@ class Pagina extends InfoPagina{
 
     'setter
     +setDataPagina(dataPagina: Date) : void
-
     +setContenuto(contenuto: string) : void
-    
-    +aggiungiAllegato(percorso: string) : void
-    +rimuoviAllegato(percorso: string) : void
 
     'getter
     +getContenuto() : string
-    +getAllegati() : List<string> copia
+    +getAllegati() : List<string>
 }
 
 'Traduttori e salvataggio dati
