@@ -28,7 +28,13 @@ namespace Progetto_diario
             ////app = new Applicazione();
 
         }
-       
+
+        private void click_apri(object sender, RoutedEventArgs e)
+        {
+            FinestraDiario finestraDiario = new FinestraDiario();
+            finestraDiario.ShowDialog();
+        }
+
 
         //public void apriDiario(object sender, RoutedEventArgs e)
         //{

@@ -23,6 +23,12 @@ namespace Progetto_diario
         {
             InitializeComponent();
         }
+
+        private void clickApri(object sender, RoutedEventArgs e)
+        {
+            FinestraPagina finestraPagina = new FinestraPagina();
+            finestraPagina.ShowDialog();
+        }
         //private GestoreDiario gestoreDiario = new GestoreDiario();
         //public void apriPagina(object sender, RoutedEventArgs e)
         //{

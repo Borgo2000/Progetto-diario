@@ -1,19 +1,194 @@
 ﻿<Window x:Class="Progetto_diario.FinestraPagina"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Progetto_diario"
-        mc:Ignorable="d"
         Title="FinestraPagina" Height="788" Width="680">
-    <Grid Margin="10,10,0,0">
-        <TextBox HorizontalAlignment="Left" Margin="36,128,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="244" Height="122"/>
-        <Button Content="Salva" HorizontalAlignment="Left" Margin="36,300,0,0" VerticalAlignment="Top" Height="56" Width="209"/>
-        <ComboBox HorizontalAlignment="Left" Margin="36,44,0,0" VerticalAlignment="Top" Width="120"/>
-        <Label Content="Template" HorizontalAlignment="Left" Margin="36,13,0,0" VerticalAlignment="Top"/>
-        <Label Content="Contenuto" HorizontalAlignment="Left" Margin="36,97,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="buttton_emoji" Content="emoji" HorizontalAlignment="Left" Height="65" Margin="52,454,0,0" VerticalAlignment="Top" Width="104"/>
-        <ComboBox x:Name="combobox_musica" HorizontalAlignment="Left" Height="22" Margin="454,44,0,0" VerticalAlignment="Top" Width="150"/>
-        <Label x:Name="label_musica" Content="musica" HorizontalAlignment="Left" Height="26" Margin="454,13,0,0" VerticalAlignment="Top" Width="150"/>
+
+    <Window.Resources>
+
+        <!-- STILE PULSANTE EMOJI -->
+        <Style x:Key="GlowButton" TargetType="Button">
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Background" Value="#2A1B3D"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect Color="#8A2BE2"
+                                      BlurRadius="12"
+                                      ShadowDepth="0"
+                                      Opacity="0.6"/>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#2F1A44"/>
+                    <!-- viola più scuro -->
+                    <Setter Property="Effect">
+                        <Setter.Value>
+                            <DropShadowEffect Color="#7A4FCB" 
+                              BlurRadius="14"
+                              ShadowDepth="0"
+                              Opacity="0.5"/>
+                            <!-- glow più leggero -->
+                        </Setter.Value>
+                    </Setter>
+                </Trigger>
+
+            </Style.Triggers>
+        </Style>
+
+        <!-- STILE PULSANTE SALVA -->
+        <Style x:Key="SaveButton" TargetType="Button">
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Background" Value="#1E88E5"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect Color="#1E88E5"
+                                      BlurRadius="12"
+                                      ShadowDepth="0"
+                                      Opacity="0.6"/>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#2874C8"/>
+                    <!-- blu meno acceso -->
+                    <Setter Property="Effect">
+                        <Setter.Value>
+                            <DropShadowEffect Color="#5FA8E0"
+                                                BlurRadius="14"
+                                                ShadowDepth="0"
+                                                Opacity="0.5"/>
+                        </Setter.Value>
+                    </Setter>
+                </Trigger>
+
+
+            </Style.Triggers>
+        </Style>
+
+    </Window.Resources>
+
+    <Grid Background="#241339">
+
+        <!-- TEMPLATE -->
+        <Label Content="Template"
+               Foreground="White"
+               FontWeight="Bold"
+               Margin="23,13,0,0"
+               HorizontalAlignment="Left"
+               VerticalAlignment="Top"/>
+
+        <ComboBox x:Name="combox_Template"
+                  HorizontalAlignment="Left"
+                  Margin="23,39,0,0"
+                  VerticalAlignment="Top"
+                  Width="150"
+                  Background="#1B102B"
+                  Foreground="White"
+                  BorderBrush="#4A3A6A"
+                  FontWeight="Bold"/>
+
+        <!-- MUSICA -->
+        <Label Content="Musica"
+               Foreground="White"
+               FontWeight="Bold"
+               Margin="454,13,0,0"
+               HorizontalAlignment="Left"
+               VerticalAlignment="Top"/>
+
+        <ComboBox x:Name="combobox_musica"
+          HorizontalAlignment="Left"
+          Margin="454,39,0,0"
+          VerticalAlignment="Top"
+          Width="150"
+          Foreground="Black"
+          BorderBrush="#4A3A6A"
+          FontWeight="Bold"
+          SelectionChanged="combobox_musica_SelectionChanged" Background="#FF1B102B">
+
+            <ComboBoxItem Content="Nessuna musica" Foreground="Black"/>
+            <ComboBoxItem Content="Lilith" Foreground="Black" Tag="immagini_diari/Kid Yugi - Lilith (Visual).mp3"/>
+            <ComboBoxItem Content="100 MESSAGGI" Foreground="Black" Tag="immagini_diari/Lazza - 100 MESSAGGI.mp3"/>
+            <ComboBoxItem Content="NEON" Foreground="Black" Tag="immagini_diari/Sfera Ebbasta &amp; Shiva - NEON.mp3"/>
+        </ComboBox>
+
+
+        <!-- AREA DI SCRITTURA -->
+        <RichTextBox x:Name="textBox_contenuto"
+                     HorizontalAlignment="Center"
+                     Margin="0,98,0,40"
+                     VerticalAlignment="Top"
+                     Width="634"
+                     Height="539"
+                     FontSize="16"
+                     Foreground="Gray"
+                     Background="#1B102B"
+                     BorderBrush="#3A2A4D"/>
+
+        <!-- EMOJI INSERITE (FISSE IN BASSO A SINISTRA) -->
+        <StackPanel x:Name="emojiInsertedPanel"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    Margin="23,640,0,0"/>
+
+        <!-- PULSANTE EMOJI -->
+        <Button x:Name="button_emoji"
+                Content="Emoji"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Margin="23,689,0,0"
+                Width="110"
+                Height="38"
+                Click="button_emoji_Click"
+                Style="{StaticResource GlowButton}"/>
+
+        <!-- MENU EMOJI -->
+        <StackPanel x:Name="emojiPanel"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    Margin="140,689,0,0"
+                    Visibility="Collapsed">
+
+            <Image Source="/felice.PNG"
+                   Width="32" Height="32"
+                   Cursor="Hand"
+                   Margin="0,0,8,0"
+                   MouseLeftButtonUp="Emoji_Click"/>
+
+            <Image Source="/triste.PNG"
+                   Width="32" Height="32"
+                   Cursor="Hand"
+                   Margin="0,0,8,0"
+                   MouseLeftButtonUp="Emoji_Click"/>
+
+            <Image Source="/arrabbiato.PNG"
+                   Width="32" Height="32"
+                   Cursor="Hand"
+                   Margin="0,0,8,0"
+                   MouseLeftButtonUp="Emoji_Click"/>
+
+            <Image Source="/innamorato.PNG"
+                   Width="32" Height="32"
+                   Cursor="Hand"
+                   MouseLeftButtonUp="Emoji_Click"/>
+        </StackPanel>
+
+        <!-- PULSANTE SALVA -->
+        <Button x:Name="button_salva"
+                Content="Salva"
+                HorizontalAlignment="Left"
+                Margin="548,689,0,0"
+                VerticalAlignment="Top"
+                Width="100"
+                Height="38"
+                Style="{StaticResource SaveButton}" Cursor=""/>
+
     </Grid>
 </Window>

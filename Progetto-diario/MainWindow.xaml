@@ -148,7 +148,7 @@
             </LinearGradientBrush>
         </Grid.Background>
         <!-- TITOLO MENU -->
-        <Label Content="MENU"
+        <Label x:Name="label_menuPrinc" Content="MENU"
        HorizontalAlignment="Center"
        VerticalAlignment="Top"
        Margin="0,30,0,0"
@@ -328,7 +328,7 @@
 
         <!-- BOTTONI IN BASSO -->
         <Button x:Name="button_elimina" Content="Elimina" Background="#E53935" Style="{StaticResource ModernFlatButton}" HorizontalAlignment="Left" Margin="390,420,0,0" Width="130" Height="50"/>
-        <Button x:Name="button_apriDiario" Content="Apri diario" Background="#1E88E5" Style="{StaticResource ModernFlatButton}" HorizontalAlignment="Left" Margin="525,420,0,0" Width="130" Height="50"/>
+        <Button x:Name="button_apriDiario" Content="Apri diario" Background="#1E88E5" Style="{StaticResource ModernFlatButton}" HorizontalAlignment="Left" Margin="525,420,0,0" Width="130" Height="50" Click="click_apri"/>
         <Button x:Name="button_accesso" Content="Accesso libero" Background="#3A3F47" Style="{StaticResource ModernFlatButton}" HorizontalAlignment="Left" Margin="660,420,0,0" Width="150" Height="50"/>
     </Grid>
 </Window>

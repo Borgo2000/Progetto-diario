@@ -136,5 +136,32 @@
   <ItemGroup>
     <Resource Include="piu1.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="felice.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="triste.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="arrabbiato.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="innamorato.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Kid Yugi - Lilith %28Visual%29.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Lazza - 100 MESSAGGI.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Resource Include="piu3.PNG" />
+    <Resource Include="pagina3.PNG" />
+    <Resource Include="pagina2.PNG" />
+    <Resource Include="pagina.PNG" />
+    <Content Include="Sfera Ebbasta &amp; Shiva - NEON.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

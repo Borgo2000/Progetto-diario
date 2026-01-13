@@ -7,14 +7,30 @@
         mc:Ignorable="d"
         Title="FinestraDiario" Height="550" Width="900">
     <Grid Margin="0,0,0,-6">
-        <ListBox d:ItemsSource="{d:SampleData ItemCount=5}" Margin="446,57,139,264"/>
-        <Button Content="Apri pagina" HorizontalAlignment="Left" Margin="269,57,0,0" VerticalAlignment="Top" Height="48" Width="110"/>
-        <Button Content="Crea pagina" HorizontalAlignment="Left" Margin="94,57,0,0" VerticalAlignment="Top" Height="48" Width="110"/>
-        <Button x:Name="button_impostazioni" Content="impostazioni" HorizontalAlignment="Left" Height="56" Margin="625,286,0,0" VerticalAlignment="Top" Width="76"/>
-        <ListBox d:ItemsSource="{d:SampleData ItemCount=5}" Margin="446,57,68,264"/>
-        <Button Content="Apri pagina" HorizontalAlignment="Left" Margin="269,57,0,0" VerticalAlignment="Top" Height="48" Width="110"/>
-        <Button Content="Crea pagina" HorizontalAlignment="Left" Margin="94,57,0,0" VerticalAlignment="Top" Height="48" Width="110"/>
-        <Button x:Name="button_impostazioniiii" Content="impostazioni" HorizontalAlignment="Left" Height="56" Margin="625,286,0,0" VerticalAlignment="Top" Width="76" Grid.Column="1"/>
+        <Button x:Name="button_ApriPagina" Content="Apri pagina" HorizontalAlignment="Left" Margin="578,450,0,0" VerticalAlignment="Top" Height="48" Width="110" Click="clickApri"/>
+        <Button Content="Crea pagina" HorizontalAlignment="Center" Margin="0,450,0,0" VerticalAlignment="Top" Height="48" Width="110"/>
+        <Button x:Name="button_impostazioni" Content="impostazioni" HorizontalAlignment="Left" Height="48" Margin="716,450,0,0" VerticalAlignment="Top" Width="91"/>
+        <Label x:Name="label_menuDiario" Content="MENU DIARIO" HorizontalAlignment="Center" Height="50" Margin="0,30,0,0" VerticalAlignment="Top" Width="175" FontSize="24" FontWeight="Bold"/>
+        <Rectangle x:Name="rect_imgpagina1" HorizontalAlignment="Left" Height="170" Margin="58,100,0,0" Stroke="Black" VerticalAlignment="Top" Width="148">
+            <Rectangle.Fill>
+                <ImageBrush ImageSource="/pagina.PNG" Stretch="Uniform"/>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Rectangle x:Name="rect_imgpagina2" HorizontalAlignment="Left" Height="170" Margin="302,100,0,0" Stroke="Black" VerticalAlignment="Top" Width="148" RenderTransformOrigin="-0.024,0.465">
+            <Rectangle.Fill>
+                <ImageBrush ImageSource="/pagina2.PNG" Stretch="Uniform"/>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Rectangle x:Name="rect_imgpagina3" HorizontalAlignment="Left" Height="170" Margin="559,100,0,0" Stroke="Black" VerticalAlignment="Top" Width="148">
+            <Rectangle.Fill>
+                <ImageBrush ImageSource="/pagina3.PNG" Stretch="Uniform"/>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Rectangle x:Name="rect_imgpiu3" HorizontalAlignment="Left" Height="170" Margin="58,328,0,0" Stroke="Black" VerticalAlignment="Top" Width="148">
+            <Rectangle.Fill>
+                <ImageBrush ImageSource="/piu3.PNG" Stretch="Uniform"/>
+            </Rectangle.Fill>
+        </Rectangle>
 
     </Grid>
 </Window>
