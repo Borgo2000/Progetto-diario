@@ -23,6 +23,7 @@ namespace Progetto_diario
         //private Applicazione app = null;
         public MainWindow()
         {
+
             InitializeComponent();
             ////app = new Applicazione();
 

@@ -8,8 +8,6 @@ namespace Progetto_diario
 {
     internal class Diario : InfoDiario
     {
-        private InfoDiario infoDiario;
-
         private string password;
         private bool diarioVaidato;
 
@@ -17,31 +15,16 @@ namespace Progetto_diario
 
         public Diario(InfoDiario diario, string password, List<InfoPagina> pagine) : base(diario)
         {
-            this.infoDiario = diario;
-
             this.pagine = pagine;
             this.password = password;
-            this.diarioVaidato = password == "";
+            this.diarioVaidato = (password == "");
         }
 
         public void setNome(string nome)
         {
+            checkValidita();
+
             this.nome = nome;
-            this.infoDiario.nome = nome;
-        }
-
-        public void aggiungiPagina(InfoPagina pagina)
-        {
-            if (!isValidato()) return;
-
-            pagine.Add(pagina);
-        }
-
-        public void rimuoviPagina(InfoPagina pagina)
-        {
-            if (!isValidato()) return;
-
-            pagine.Remove(pagina);
         }
 
         public void setPassword(string password, string nuovaPassword)
@@ -55,7 +38,7 @@ namespace Progetto_diario
         {
             if (!isValidato()) return null;
 
-            return pagine.AsReadOnly();
+            return pagine;
         }
 
 
@@ -70,6 +53,10 @@ namespace Progetto_diario
             return diarioVaidato;
         }
 
-
+        private void checkValidita()
+        {
+            if (!isValidato())
+                throw new Exception("Errore: Diario non validato");
+        }
     }
 }

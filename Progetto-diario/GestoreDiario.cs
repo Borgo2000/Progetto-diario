@@ -1,33 +1,79 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
+using System.Windows.Documents;
 
 namespace Progetto_diario
 {
     internal class GestoreDiario
     {
+        private InfoDiario infoDiario;
         private Diario diario;
 
-        public GestoreDiario()
+        private int numeroPagine = 0;
+
+        public GestoreDiario(InfoDiario infoDiario)
         {
+            this.infoDiario = infoDiario;
+
             leggiDiario();
         }
 
-        public Diario getDiario()
+        public void setNome(string nome)
         {
-            return diario;
+            diario.setNome(nome);
+        }
+
+        public void aggiungiPagina(DateTime dataCreazione)
+        {
+            numeroPagine++;
+            diario.getPagine().Add(new InfoPagina("./Diari/Pagina_" + numeroPagine + "/", numeroPagine, dataCreazione));
+        }
+
+        public void rimuoviPagina(int numeroPagina)
+        {
+            if (diario.getPagine().RemoveAll(p => p.getNumeroPagina() == numeroPagina) == 0)
+                throw new Exception("Errore: Impossibile rimuovere l'oggetto.");
+        }
+
+        public void setPassword(string password, string nuovaPassword)
+        {
+            diario.setPassword(password, nuovaPassword);
+        }
+
+        public void validaDiario(string password)
+        {
+            diario.validaDiario(password);
+        }
+
+        public bool isValidato()
+        {
+            return diario.isValidato();
+        }
+
+        public ReadOnlyCollection<InfoPagina> getPagine()
+        {
+            return diario.getPagine().AsReadOnly();
         }
 
         public void salvaDiario()
         {
-            Salva.SalvaDiario(this.diario);
+            Salva.SalvaDiario(diario);
         }
 
         public void leggiDiario()
         {
-            this.diario = Salva.LeggiDiario();
+            diario = Salva.LeggiDiario(infoDiario);
+
+            foreach (InfoPagina ip in diario.getPagine())
+            {
+                if (ip.getNumeroPagina() > numeroPagine)
+                    numeroPagine = ip.getNumeroPagina();
+            }
         }
     }
 }

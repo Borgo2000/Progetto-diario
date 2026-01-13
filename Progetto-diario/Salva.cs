@@ -9,41 +9,61 @@ namespace Progetto_diario
 {
     internal class Salva
     {
-        public static void SalvaDiari(ListaDiari diari)
+        private static void verificaPercorso(string percorso) {
+            if (Directory.Exists(Path.GetDirectoryName(percorso)))
+            {
+                throw new Exception("Percorso Invalido.");
+            }
+
+            if (File.Exists(percorso))
+            {
+                throw new Exception("File Inesistente.");
+            }
+        }
+        public static void SalvaDiari(ListaDiari diari, string percorso)
         {
-            File.CreateDirectory("./Diari");
-            File.WriteAllText("./Diari/InfoDiari.txt", Traduci.diariToFile(diari));
+            Directory.CreateDirectory(Path.GetDirectoryName(percorso));
+            File.WriteAllText(percorso, Traduci.diariToFile(diari));
         }
 
-        public static ListaDiari LeggiDiari()
+        public static ListaDiari LeggiDiari(string percorso)
         {
-            // Implementazione della lettura dei diari
-            return null;
+            percorso += "InfoDiari.txt";
+            verificaPercorso(percorso);
+
+            string file = File.ReadAllText(percorso);
+            return Traduci.fileToDiari(file);
         }
 
         public static void SalvaDiario(Diario diario)
         {
-            // Implementazione del salvataggio di un singolo diario
-            File.CreateDirectory(diario.getPercorso());
-            File.WriteAllText(diario.getPercorso(), Traduci.diariToFile(diari));
+            Directory.CreateDirectory(Path.GetDirectoryName(diario.getPercorso()));
+            File.WriteAllText(diario.getPercorso(), Traduci.diarioToFile(diario));
         }
 
-        public static Diario LeggiDiario()
+        public static Diario LeggiDiario(InfoDiario infoDiario)
         {
-            // Implementazione della lettura di un singolo diario
-            return null;
+            string percorso = infoDiario.getPercorso() + "InfoDiario.txt";
+            verificaPercorso(percorso);
+
+            string file = File.ReadAllText(percorso);
+            return Traduci.fileToDiario(file, infoDiario);
         }
 
 
         public static void SalvaPagina(Pagina pagina)
         {
-            // Implementazione del salvataggio delle pagine di un diario
+            Directory.CreateDirectory(Path.GetDirectoryName(pagina.getPercorso()));
+            File.WriteAllText(pagina.getPercorso(), Traduci.paginaToFile(pagina));
         }
 
-        public static Pagina LeggiPagina()
+        public static Pagina LeggiPagina(InfoPagina infoPagina)
         {
-            // Implementazione della lettura delle pagine di un diario
-            return null;
+            string percorso = infoPagina.getPercorso() + "InfoPagina.txt";
+            verificaPercorso(percorso);
+
+            string file = File.ReadAllText(percorso);
+            return Traduci.fileToPagina(file);
         }
     }
 }

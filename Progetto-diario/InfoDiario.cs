@@ -10,13 +10,14 @@ namespace Progetto_diario
     {
         private string percorso;
         private int numeroDiario;
-        private string dataCreazione;
+        private DateTime dataCreazione;
 
         protected string nome;
 
-        public InfoDiario(string percorso, int numeroDiaio, string nome, string dataCreazione)
+        public InfoDiario(string percorso, int numeroDiario, string nome, DateTime dataCreazione)
         {
             this.percorso = percorso;
+            this.numeroDiario = numeroDiario;
             this.nome = nome;
             this.dataCreazione = dataCreazione;
         }
@@ -33,7 +34,7 @@ namespace Progetto_diario
             return numeroDiario;
         }
 
-        public string getDataCreazione()
+        public DateTime getDataCreazione()
         {
             return dataCreazione;
         }
@@ -43,6 +44,10 @@ namespace Progetto_diario
             return nome;
         }
 
+        protected void _setNome(string nome)
+        {
+            this.nome = nome;
+        }
 
         public string toString()
         {

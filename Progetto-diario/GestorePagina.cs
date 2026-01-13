@@ -8,16 +8,29 @@ namespace Progetto_diario
 {
     internal class GestorePagina
     {
-        Pagina pagina;
+        private InfoPagina infoPagina;
+        private Pagina pagina;
 
-        public GestorePagina()
+        public GestorePagina(InfoPagina infoPagina)
         {
+            this.infoPagina = infoPagina;
+
             leggiPagina();
         }
 
-        public Pagina getPagina()
+        public void aggiungiAllegati(string allegato)
         {
-            return pagina;
+            foreach (string all in pagina.getAllegati())
+                if (all == allegato)
+                    throw new Exception("Errore: Allegato gia' esistente.");
+
+            pagina.getAllegati().Add(allegato);
+        }
+
+        public void rimuoviAllegati(string allegato)
+        {
+            if(!pagina.getAllegati().Remove(allegato))
+                throw new Exception("Errore: Allegato inesistente.");
         }
 
         public void salvaPagina()
@@ -27,7 +40,7 @@ namespace Progetto_diario
 
         public void leggiPagina()
         {
-            pagina = Salva.LeggiPagina();
+            pagina = Salva.LeggiPagina(infoPagina);
         }
     }
 }

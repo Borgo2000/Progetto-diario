@@ -15,18 +15,9 @@ namespace Progetto_diario
             this.diari = diari;
         }
 
-        public void aggiungiDiario(InfoDiario diario)
-        {
-            diari.Add(diario);
-        }
-        public void rimuoviDiario(InfoDiario diario)
-        {
-            diari.Remove(diario);
-        }
-
         public List<InfoDiario> getDiari()
         {
-            return diari.AsReadOnly();
+            return diari;
         }
     }
 }

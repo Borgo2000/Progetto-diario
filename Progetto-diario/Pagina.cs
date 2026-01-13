@@ -8,17 +8,22 @@ namespace Progetto_diario
 {
     internal class Pagina : InfoPagina
     {
-        private InfoPagina infoPaigna;
-
         private string contenuto;
         private List<string> allegati;
 
         public Pagina(InfoPagina pagina, string contenuto, List<string> allegati) : base(pagina)
         {
-            this.infoPaigna = pagina;
-
             this.contenuto = contenuto;
             this.allegati = allegati;
+        }
+        public void setDataPagina(DateTime data)
+        {
+            this.dataPagina = data;
+        }
+
+        public void setContenuto(string contenuto)
+        {
+            this.contenuto = contenuto;
         }
 
         public string getContenuto()
@@ -29,27 +34,6 @@ namespace Progetto_diario
         public List<string> getAllegati()
         {
             return allegati;
-        }
-
-        public void setDataPagina(string data)
-        {
-            this.dataPagina = data;
-            this.infoPaigna.dataPagina = data;
-        }
-
-        public void setContenuto(string contenuto)
-        {
-            this.contenuto = contenuto;
-        }
-
-        public void aggiungiAllegati(string allegato)
-        {
-            allegati.Add(allegato);
-        }
-
-        public void rimuoviAllegati(string allegato)
-        {
-            allegati.Remove(allegato);
         }
     }
 }
