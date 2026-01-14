@@ -162,11 +162,11 @@
        VerticalContentAlignment="Center"
        Panel.ZIndex="1000"/>
 
-        <!-- DIARI ALLINEATI COME NELLA FOTO -->
-        <!-- DIARI ALLINEATI COME NELLA FOTO -->
+      
+        <!-- DIARI ALLINEATI -->
         <UniformGrid Rows="1"
              Columns="4"
-             Margin="60,70,60,0"
+             Margin="60,60,60,0"
              VerticalAlignment="Top"
              Height="260">
 
@@ -310,12 +310,12 @@
 
 
 
-        <!-- PULSANTE + CENTRATO COME NELLA FOTO -->
+        <!-- PULSANTE + CENTRATO -->
         <Grid Width="200"
       Height="200"
       HorizontalAlignment="Left"
       VerticalAlignment="Top"
-      Margin="60,290,0,0"
+      Margin="60,280,0,0"
       Panel.ZIndex="50">
 
             <Image x:Name="img_button_aggiungi"

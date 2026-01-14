@@ -76,22 +76,6 @@
     <Grid Background="#241339">
 
         <!-- TEMPLATE -->
-        <Label Content="Template"
-               Foreground="White"
-               FontWeight="Bold"
-               Margin="23,13,0,0"
-               HorizontalAlignment="Left"
-               VerticalAlignment="Top"/>
-
-        <ComboBox x:Name="combox_Template"
-                  HorizontalAlignment="Left"
-                  Margin="23,39,0,0"
-                  VerticalAlignment="Top"
-                  Width="150"
-                  Background="#1B102B"
-                  Foreground="White"
-                  BorderBrush="#4A3A6A"
-                  FontWeight="Bold"/>
 
         <!-- MUSICA -->
         <Label Content="Musica"
@@ -188,7 +172,7 @@
                 VerticalAlignment="Top"
                 Width="100"
                 Height="38"
-                Style="{StaticResource SaveButton}" Cursor=""/>
+                Style="{StaticResource SaveButton}" Cursor="" Click="button_salva_Click"/>
 
     </Grid>
 </Window>

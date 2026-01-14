@@ -98,6 +98,8 @@ namespace Progetto_diario
                 // Percorso del file audio
                 string relativePath = item.Tag.ToString();
                 string fullPath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, relativePath);
+                MessageBox.Show("Percorso cercato:\n" + fullPath);
+
 
                 try
                 {
@@ -109,6 +111,11 @@ namespace Progetto_diario
                     MessageBox.Show("Errore nel caricamento della musica: " + ex.Message);
                 }
             }
+        }
+
+        private void button_salva_Click(object sender, RoutedEventArgs e)
+        {
+            //salvataggio
         }
     }
 }
