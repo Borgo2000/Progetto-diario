@@ -155,10 +155,11 @@
     <Content Include="Lazza - 100 MESSAGGI.mp3">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Resource Include="piu3.PNG" />
     <Resource Include="pagina3.PNG" />
     <Resource Include="pagina2.PNG" />
     <Resource Include="pagina.PNG" />
+    <Resource Include="pagina4.PNG" />
+    <Resource Include="piu3.PNG" />
     <Content Include="Sfera Ebbasta &amp; Shiva - NEON.mp3">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
