@@ -31,7 +31,7 @@ namespace Progetto_diario
         public void aggiungiPagina(DateTime dataCreazione)
         {
             numeroPagine++;
-            diario.getPagine().Add(new InfoPagina("./Diari/Pagina_" + numeroPagine + "/", numeroPagine, dataCreazione));
+            diario.getPagine().Add(new InfoPagina(infoDiario.getPercorso() + "Pagina_" + numeroPagine + "/", numeroPagine, dataCreazione));
         }
 
         public void rimuoviPagina(int numeroPagina)

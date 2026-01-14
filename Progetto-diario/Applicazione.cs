@@ -24,7 +24,7 @@ namespace Progetto_diario
                     throw new Exception("Errore: Nome gia' esistente.");
 
             numeroDiari++;
-            diari.getDiari().Add(new InfoDiario("./Diari/" + nome + "/", numeroDiari, nome, dataCreazione));
+            diari.getDiari().Add(new InfoDiario("./Diari/" + nome + "/", numeroDiari, nome, false, dataCreazione));
         }
         public void rimuoviDiario(string nome)
         {

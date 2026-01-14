@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,6 +19,16 @@ namespace Progetto_diario
             leggiPagina();
         }
 
+        public void setDataPagina(DateTime dataPagina)
+        {
+            pagina.setDataPagina(dataPagina);
+        }
+
+        public void setContenuto(string contenuto)
+        {
+            pagina.setContenuto(contenuto);
+        }
+
         public void aggiungiAllegati(string allegato)
         {
             foreach (string all in pagina.getAllegati())
@@ -31,6 +42,16 @@ namespace Progetto_diario
         {
             if(!pagina.getAllegati().Remove(allegato))
                 throw new Exception("Errore: Allegato inesistente.");
+        }
+
+        public string getContenuto()
+        {
+            return pagina.getContenuto();
+        }
+
+        public ReadOnlyCollection<string> getAllegati()
+        {
+            return pagina.getAllegati().AsReadOnly(); 
         }
 
         public void salvaPagina()

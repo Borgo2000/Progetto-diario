@@ -10,19 +10,21 @@ namespace Progetto_diario
     {
         private string percorso;
         private int numeroDiario;
+        private bool passwordAttiva;
         private DateTime dataCreazione;
 
         protected string nome;
 
-        public InfoDiario(string percorso, int numeroDiario, string nome, DateTime dataCreazione)
+        public InfoDiario(string percorso, int numeroDiario, string nome, bool passwordAttiva, DateTime dataCreazione)
         {
             this.percorso = percorso;
             this.numeroDiario = numeroDiario;
             this.nome = nome;
+            this.passwordAttiva = passwordAttiva;
             this.dataCreazione = dataCreazione;
         }
 
-        public InfoDiario(InfoDiario diario) : this(diario.percorso, diario.numeroDiario, diario.nome, diario.dataCreazione) { }
+        public InfoDiario(InfoDiario diario) : this(diario.percorso, diario.numeroDiario, diario.nome, diario.passwordAttiva, diario.dataCreazione) { }
 
         public string getPercorso()
         {
@@ -42,6 +44,11 @@ namespace Progetto_diario
         public string getNome()
         {
             return nome;
+        }
+
+        public bool isPasswordAttiva()
+        {
+            return passwordAttiva;
         }
 
         protected void _setNome(string nome)

@@ -10,18 +10,22 @@ namespace Progetto_diario
     internal class Salva
     {
         private static void verificaPercorso(string percorso) {
-            if (Directory.Exists(Path.GetDirectoryName(percorso)))
+            string dir = Path.GetDirectoryName(percorso);
+            if (!Directory.Exists(dir))
             {
-                throw new Exception("Percorso Invalido.");
+                Directory.CreateDirectory(dir);
+                //throw new Exception("Percorso Invalido.");
             }
 
-            if (File.Exists(percorso))
+            if (!File.Exists(percorso))
             {
-                throw new Exception("File Inesistente.");
+                File.WriteAllText(percorso, "");
+                //throw new Exception("File Inesistente.");
             }
         }
         public static void SalvaDiari(ListaDiari diari, string percorso)
         {
+            percorso += "InfoDiari.txt";
             Directory.CreateDirectory(Path.GetDirectoryName(percorso));
             File.WriteAllText(percorso, Traduci.diariToFile(diari));
         }
@@ -37,8 +41,8 @@ namespace Progetto_diario
 
         public static void SalvaDiario(Diario diario)
         {
-            Directory.CreateDirectory(Path.GetDirectoryName(diario.getPercorso()));
-            File.WriteAllText(diario.getPercorso(), Traduci.diarioToFile(diario));
+            Directory.CreateDirectory(diario.getPercorso());
+            File.WriteAllText(diario.getPercorso() + "InfoDiario.txt", Traduci.diarioToFile(diario));
         }
 
         public static Diario LeggiDiario(InfoDiario infoDiario)
@@ -63,7 +67,7 @@ namespace Progetto_diario
             verificaPercorso(percorso);
 
             string file = File.ReadAllText(percorso);
-            return Traduci.fileToPagina(file);
+            return Traduci.fileToPagina(file, infoPagina);
         }
     }
 }

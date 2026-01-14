@@ -20,10 +20,15 @@ namespace Progetto_diario
             this.diarioVaidato = (password == "");
         }
 
+        private void checkValidita()
+        {
+            if (!isValidato())
+                throw new Exception("Errore: Diario non validato");
+        }
+
         public void setNome(string nome)
         {
             checkValidita();
-
             this.nome = nome;
         }
 
@@ -36,11 +41,15 @@ namespace Progetto_diario
 
         public List<InfoPagina> getPagine()
         {
-            if (!isValidato()) return null;
-
+            checkValidita();
             return pagine;
         }
 
+        public string getPassword()
+        {
+            checkValidita();
+            return password;
+        }
 
         public void validaDiario(string password)
         {
@@ -51,12 +60,6 @@ namespace Progetto_diario
         public bool isValidato()
         {
             return diarioVaidato;
-        }
-
-        private void checkValidita()
-        {
-            if (!isValidato())
-                throw new Exception("Errore: Diario non validato");
         }
     }
 }
