@@ -88,7 +88,7 @@ class InfoDiario{
     -percorso : stirng
     -numeroDiario : int
     -dataCreazione : Date
-    -nome : string
+    #nome : string
 
     +InfoDiario(percorso: string, numeroDiario: int, nome: string, dataCreazione: Date)
 
