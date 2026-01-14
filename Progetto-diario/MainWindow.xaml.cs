@@ -46,8 +46,41 @@ namespace Progetto_diario
 
 
 
+            //DiaryGrid.Children.Add(CreateDiaryCard("../../diario1.png", "Bloccato"));
+            //DiaryGrid.Children.Add(CreateDiaryCard("../../diario2.png", "Sbloccato"));
+            //DiaryGrid.Children.Add(CreateDiaryCard("../../diario3.png", "Bloccato"));
+            //DiaryGrid.Children.Add(CreateDiaryCard("../../diario7.png", "Sbloccato"));
+            //app = new Applicazione();
+            //ReadOnlyCollection<InfoDiario> diari =app.getDiari();
+            //foreach (InfoDiario diario in diari)
+            //{
+            //    string imagePath = diario.getPercorso()+"diario1.png";
+            //    string labelText = diario.getNome();
+            //    DiaryGrid.Children.Add(CreateDiaryCard(imagePath, labelText));
 
+            //}
 
+            app.aggiungiDiario("Prova 2", DateTime.Now);
+
+            ReadOnlyCollection<InfoDiario> lista = app.getDiari();
+
+            app.salvaListaDiari();
+
+            // -------
+            GestoreDiario gestDi = new GestoreDiario(lista.ElementAt(0));
+
+            gestDi.aggiungiPagina(DateTime.Now);
+
+            ReadOnlyCollection<InfoPagina> lista2 = gestDi.getPagine();
+
+            gestDi.salvaDiario();
+
+            // -------
+            GestorePagina gestPa = new GestorePagina(lista2.ElementAt(0));
+
+            gestPa.setContenuto("Ciao mondo!!!!!\nCaisdfafdoifd\nfff");
+
+            gestPa.salvaPagina();
         }
 
         private void click_apri(object sender, RoutedEventArgs e)
