@@ -54,6 +54,8 @@ namespace Progetto_diario
             Salva.EliminaPagina(pagina);
 
             diario.getPagine().RemoveAll(p => p.getNumeroPagina() == numeroPagina);
+
+            setupNumeroPagine();
         }
 
         public void setPassword(string password, string nuovaPassword)

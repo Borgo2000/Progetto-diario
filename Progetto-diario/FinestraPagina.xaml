@@ -78,28 +78,6 @@
         <!-- TEMPLATE -->
 
         <!-- MUSICA -->
-        <Label Content="Musica"
-               Foreground="White"
-               FontWeight="Bold"
-               Margin="23,11,0,0"
-               HorizontalAlignment="Left"
-               VerticalAlignment="Top"/>
-
-        <ComboBox x:Name="combobox_musica"
-          HorizontalAlignment="Left"
-          Margin="10,41,0,0"
-          VerticalAlignment="Top"
-          Width="150"
-          Foreground="Black"
-          BorderBrush="#4A3A6A"
-          FontWeight="Bold"
-          SelectionChanged="combobox_musica_SelectionChanged" Background="#FF1B102B">
-
-            <ComboBoxItem Content="Nessuna musica" Foreground="Black"/>
-            <ComboBoxItem Content="Lilith" Foreground="Black" Tag="immagini_diari/Kid Yugi - Lilith (Visual).mp3"/>
-            <ComboBoxItem Content="100 MESSAGGI" Foreground="Black" Tag="immagini_diari/Lazza - 100 MESSAGGI.mp3"/>
-            <ComboBoxItem Content="NEON" Foreground="Black" Tag="immagini_diari/Sfera Ebbasta &amp; Shiva - NEON.mp3"/>
-        </ComboBox>
 
 
         <!-- AREA DI SCRITTURA -->

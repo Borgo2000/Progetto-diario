@@ -77,6 +77,27 @@
                         </Setter.Value>
                     </Setter>
                 </Trigger>
+                
+                
+                
+                <Trigger Property="Tag" Value="selected">
+                    <Setter Property="RenderTransform">
+                        <Setter.Value>
+                            <ScaleTransform ScaleX="1.06" ScaleY="1.06"/>
+                        </Setter.Value>
+                    </Setter>
+                    <Setter Property="Stroke" Value="#00CFFF"/>
+                    <Setter Property="StrokeThickness" Value="2.5"/>
+                    <Setter Property="Effect">
+                        <Setter.Value>
+                            <DropShadowEffect BlurRadius="26"
+                              ShadowDepth="0"
+                              Opacity="0.9"
+                              Color="#8000CFFF"/>
+                        </Setter.Value>
+                    </Setter>
+                </Trigger>
+
             </Style.Triggers>
         </Style>
 

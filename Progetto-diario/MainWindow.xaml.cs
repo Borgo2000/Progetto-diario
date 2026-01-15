@@ -280,22 +280,29 @@ namespace Progetto_diario
             // 🔹 EVENTO CLICK PER SELEZIONE
             grid.MouseLeftButtonUp += (s, e) =>
             {
-                // Se clicchi di nuovo sulla stessa → diseleziona
+                Rectangle selectedrect = (Rectangle)grid.Tag;
+
+                // Se clicchi di nuovo → deseleziona
                 if (diarioSelezionato == grid)
                 {
-                    RimuoviEvidenziazione(grid);
+                    selectedrect.Tag = null;
                     diarioSelezionato = null;
                     return;
                 }
 
-                // Rimuovi evidenziazione precedente
+                // Rimuovi selezione precedente
                 if (diarioSelezionato != null)
-                    RimuoviEvidenziazione(diarioSelezionato);
+                {
+                    Rectangle oldRect = (Rectangle)diarioSelezionato.Tag;
+                    oldRect.Tag = null;
+                }
 
-                // Evidenzia questa
-                ApplicaEvidenziazione(grid);
+                // Seleziona questa
+                selectedrect.Tag = "selected";
                 diarioSelezionato = grid;
             };
+
+
 
             // 🔹 LABEL SUPERIORE (NOME)
             Label lblNome = new Label
@@ -317,7 +324,7 @@ namespace Progetto_diario
                 VerticalAlignment = VerticalAlignment.Center,
                 Style = (Style)FindResource("DiaryCardStyle")
             };
-
+            grid.Tag = rect;
             rect.Fill = new ImageBrush
             {
                 ImageSource = new BitmapImage(new Uri("pack://application:,,,/diario1.png")),

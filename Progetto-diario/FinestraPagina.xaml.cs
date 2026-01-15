@@ -102,36 +102,36 @@ namespace Progetto_diario
             }
         }
 
-        private void combobox_musica_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (combobox_musica.SelectedItem is ComboBoxItem item)
-            {
-                string selected = item.Content.ToString();
+        //private void combobox_musica_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        //{
+        //    if (combobox_musica.SelectedItem is ComboBoxItem item)
+        //    {
+        //        string selected = item.Content.ToString();
 
-                // Se seleziona "Nessuna musica"
-                if (selected == "Nessuna musica")
-                {
-                    player.Stop();
-                    return;
-                }
+        //        // Se seleziona "Nessuna musica"
+        //        if (selected == "Nessuna musica")
+        //        {
+        //            player.Stop();
+        //            return;
+        //        }
 
-                // Percorso del file audio
-                string relativePath = item.Tag.ToString();
-                string fullPath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, relativePath);
-                //MessageBox.Show("Percorso cercato:\n" + fullPath);
+        //        // Percorso del file audio
+        //        string relativePath = item.Tag.ToString();
+        //        string fullPath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, relativePath);
+        //        //MessageBox.Show("Percorso cercato:\n" + fullPath);
 
 
-                try
-                {
-                    player.Open(new Uri(fullPath, UriKind.Absolute));
-                    player.Play();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Errore nel caricamento della musica: " + ex.Message);
-                }
-            }
-        }
+        //        try
+        //        {
+        //            player.Open(new Uri(fullPath, UriKind.Absolute));
+        //            player.Play();
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            MessageBox.Show("Errore nel caricamento della musica: " + ex.Message);
+        //        }
+        //    }
+        //}
 
         private void button_salva_Click(object sender, RoutedEventArgs e)
         {

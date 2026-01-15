@@ -59,13 +59,29 @@ namespace Progetto_diario
 
             // CLICK → selezione
             card.PreviewMouseLeftButtonDown += (s, e) =>
-
             {
                 // Se clicchi la stessa → deseleziona
-                if (paginaSelezionata == card) { card.Tag = null; RimuoviEvidenziazione(card); paginaSelezionata = null; return; } 
-                if (paginaSelezionata != null) { paginaSelezionata.Tag = null; RimuoviEvidenziazione(paginaSelezionata); } 
-                Tag = "selected"; ApplicaEvidenziazione(card); paginaSelezionata = card;
+                if (paginaSelezionata == card)
+                {
+                    card.Tag = null;
+                    RimuoviEvidenziazione(card);
+                    paginaSelezionata = null;
+                    return;
+                }
+
+                // Se c’era una card selezionata prima → toglila
+                if (paginaSelezionata != null)
+                {
+                    paginaSelezionata.Tag = null;
+                    RimuoviEvidenziazione(paginaSelezionata);
+                }
+
+                // Seleziona la nuova card
+                card.Tag = "selected";
+                ApplicaEvidenziazione(card);
+                paginaSelezionata = card;
             };
+
 
             StackPanel stack = new StackPanel
             {
@@ -140,16 +156,18 @@ namespace Progetto_diario
 
         private void AggiungiPagina_Click(object sender, MouseButtonEventArgs e)
         {
-            if (PagesGrid.Children.Count >= 14) { MessageBox.Show("Puoi aggiungere al massimo 14 pagine."); return; }
+            if (PagesGrid.Children.Count >= 14) { 
+                MessageBox.Show("Puoi aggiungere al massimo 14 pagine."); 
+                return; }
 
 
-
-
-            int numero = PagesGrid.Children.Count + 1;
+            
+            
+            
 
             // aggiungi al modello
             diario.aggiungiPagina(DateTime.Now);
-
+            int numero = diario.getPagine().Last().getNumeroPagina();
             // aggiungi alla UI
             PagesGrid.Children.Add(CreatePageCard(numero));
 
