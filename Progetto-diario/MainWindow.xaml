@@ -164,149 +164,7 @@
 
       
         <!-- DIARI ALLINEATI -->
-        <UniformGrid Rows="1"
-             Columns="4"
-             Margin="60,60,60,0"
-             VerticalAlignment="Top"
-             Height="260">
-
-            <!-- DIARIO 1 – BLOCCATO -->
-            <Grid Width="148" Height="170">
-                <Rectangle x:Name="rect_img1"
-                   Width="148" Height="134"
-                   Style="{StaticResource DiaryCardStyle}"
-                   Panel.ZIndex="1">
-                    <Rectangle.Fill>
-                        <ImageBrush ImageSource="/diario1.png" Stretch="Uniform"/>
-                    </Rectangle.Fill>
-                </Rectangle>
-
-                <Label Content="Bloccato"
-               FontWeight="Bold"
-               FontSize="14"
-               Foreground="#B0B3C4"
-               Background="Transparent"
-               HorizontalAlignment="Center"
-               VerticalAlignment="Bottom"
-               Margin="0,0,0,12"
-               Panel.ZIndex="999">
-                    <Label.Style>
-                        <Style TargetType="Label">
-                            <Setter Property="Visibility" Value="Collapsed"/>
-                            <Style.Triggers>
-                                <DataTrigger Binding="{Binding IsMouseOver, RelativeSource={RelativeSource AncestorType=Grid}}"
-                                     Value="True">
-                                    <Setter Property="Visibility" Value="Visible"/>
-                                </DataTrigger>
-                            </Style.Triggers>
-                        </Style>
-                    </Label.Style>
-                </Label>
-            </Grid>
-
-            <!-- DIARIO 2 – BLOCCATO -->
-            <Grid Width="148" Height="170">
-                <Rectangle x:Name="rect_img2"
-                   Width="148" Height="134"
-                   Style="{StaticResource DiaryCardStyle}"
-                   Panel.ZIndex="1">
-                    <Rectangle.Fill>
-                        <ImageBrush ImageSource="/diario2.png" Stretch="Uniform"/>
-                    </Rectangle.Fill>
-                </Rectangle>
-
-                <Label Content="Bloccato"
-               FontWeight="Bold"
-               FontSize="14"
-               Foreground="#B0B3C4"
-               Background="Transparent"
-               HorizontalAlignment="Center"
-               VerticalAlignment="Bottom"
-               Margin="0,0,0,12"
-               Panel.ZIndex="999">
-                    <Label.Style>
-                        <Style TargetType="Label">
-                            <Setter Property="Visibility" Value="Collapsed"/>
-                            <Style.Triggers>
-                                <DataTrigger Binding="{Binding IsMouseOver, RelativeSource={RelativeSource AncestorType=Grid}}"
-                                     Value="True">
-                                    <Setter Property="Visibility" Value="Visible"/>
-                                </DataTrigger>
-                            </Style.Triggers>
-                        </Style>
-                    </Label.Style>
-                </Label>
-            </Grid>
-
-            <!-- DIARIO 3 – ACCESSO LIBERO -->
-            <Grid Width="148" Height="170">
-                <Rectangle x:Name="rect_img3"
-                   Width="148" Height="134"
-                   Style="{StaticResource DiaryCardStyle}"
-                   Panel.ZIndex="1">
-                    <Rectangle.Fill>
-                        <ImageBrush ImageSource="/diario3.png" Stretch="Uniform"/>
-                    </Rectangle.Fill>
-                </Rectangle>
-
-                <Label Content="Accesso libero"
-               FontWeight="Bold"
-               FontSize="14"
-               Foreground="#A0D8FFFF"
-               Background="Transparent"
-               HorizontalAlignment="Center"
-               VerticalAlignment="Bottom"
-               Margin="0,0,0,12"
-               Panel.ZIndex="999">
-                    <Label.Style>
-                        <Style TargetType="Label">
-                            <Setter Property="Visibility" Value="Collapsed"/>
-                            <Style.Triggers>
-                                <DataTrigger Binding="{Binding IsMouseOver, RelativeSource={RelativeSource AncestorType=Grid}}"
-                                     Value="True">
-                                    <Setter Property="Visibility" Value="Visible"/>
-                                </DataTrigger>
-                            </Style.Triggers>
-                        </Style>
-                    </Label.Style>
-                </Label>
-            </Grid>
-
-            <!-- DIARIO 7 – BLOCCATO -->
-            <Grid Width="148" Height="170">
-                <Rectangle x:Name="rect_img7"
-                   Width="148" Height="134"
-                   Style="{StaticResource DiaryCardStyle}"
-                   Panel.ZIndex="1">
-                    <Rectangle.Fill>
-                        <ImageBrush ImageSource="/diario7.png" Stretch="Uniform"/>
-                    </Rectangle.Fill>
-                </Rectangle>
-
-                <Label Content="Bloccato"
-               FontWeight="Bold"
-               FontSize="14"
-               Foreground="#B0B3C4"
-               Background="Transparent"
-               HorizontalAlignment="Center"
-               VerticalAlignment="Bottom"
-               Margin="0,0,0,12"
-               Panel.ZIndex="999">
-                    <Label.Style>
-                        <Style TargetType="Label">
-                            <Setter Property="Visibility" Value="Collapsed"/>
-                            <Style.Triggers>
-                                <DataTrigger Binding="{Binding IsMouseOver, RelativeSource={RelativeSource AncestorType=Grid}}"
-                                     Value="True">
-                                    <Setter Property="Visibility" Value="Visible"/>
-                                </DataTrigger>
-                            </Style.Triggers>
-                        </Style>
-                    </Label.Style>
-                </Label>
-            </Grid>
-
-        </UniformGrid>
+        <UniformGrid x:Name="DiaryGrid" Rows="1" Columns="4" Margin="60,60,60,0" VerticalAlignment="Top" Height="274"></UniformGrid>
 
 
 
@@ -315,19 +173,19 @@
       Height="200"
       HorizontalAlignment="Left"
       VerticalAlignment="Top"
-      Margin="60,280,0,0"
+      Margin="60,302,0,0"
       Panel.ZIndex="50">
 
             <Image x:Name="img_button_aggiungi"
            Source="/piu1.png"
            Width="148"
            Height="178"
-           Style="{StaticResource PlusImageStyle}"/>
+           Style="{StaticResource PlusImageStyle}"
+           MouseLeftButtonUp="img_button_aggiungi_MouseLeftButtonUp"/>
         </Grid>
 
-
         <!-- BOTTONI IN BASSO -->
-        <Button x:Name="button_elimina" Content="Elimina" Background="#E53935" Style="{StaticResource ModernFlatButton}" HorizontalAlignment="Left" Margin="390,420,0,0" Width="130" Height="50"/>
+        <Button x:Name="button_elimina" Content="Elimina" Background="#E53935" Style="{StaticResource ModernFlatButton}" HorizontalAlignment="Left" Margin="390,420,0,0" Width="130" Height="50" Click="button_elimina_Click"/>
         <Button x:Name="button_apriDiario" Content="Apri diario" Background="#1E88E5" Style="{StaticResource ModernFlatButton}" HorizontalAlignment="Left" Margin="525,420,0,0" Width="130" Height="50" Click="click_apri"/>
         <Button x:Name="button_accesso" Content="Accesso libero" Background="#3A3F47" Style="{StaticResource ModernFlatButton}" HorizontalAlignment="Left" Margin="660,420,0,0" Width="150" Height="50"/>
     </Grid>

@@ -98,7 +98,7 @@ namespace Progetto_diario
                 // Percorso del file audio
                 string relativePath = item.Tag.ToString();
                 string fullPath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, relativePath);
-                MessageBox.Show("Percorso cercato:\n" + fullPath);
+                //MessageBox.Show("Percorso cercato:\n" + fullPath);
 
 
                 try

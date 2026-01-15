@@ -1,195 +1,383 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Microsoft.VisualBasic;
+using System;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using Microsoft.VisualBasic;
 using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
+
 
 namespace Progetto_diario
 {
-    /// <summary>
-    /// Logica di interazione per MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
-        //private Applicazione app = null;
-        
+        private Applicazione app = null;
+        private Grid diarioSelezionato = null;
+
         public MainWindow()
         {
-
             InitializeComponent();
 
+            app = new Applicazione();
+            ReadOnlyCollection<InfoDiario> diari = app.getDiari();
 
-            //DiaryGrid.Children.Add(CreateDiaryCard("../../diario1.png", "Bloccato"));
-            //DiaryGrid.Children.Add(CreateDiaryCard("../../diario2.png", "Sbloccato"));
-            //DiaryGrid.Children.Add(CreateDiaryCard("../../diario3.png", "Bloccato"));
-            //DiaryGrid.Children.Add(CreateDiaryCard("../../diario7.png", "Sbloccato"));
-            //app = new Applicazione();
-            //ReadOnlyCollection<InfoDiario> diari =app.getDiari();
-            //foreach (InfoDiario diario in diari)
-            //{
-            //    string imagePath = diario.getPercorso()+"diario1.png";
-            //    string labelText = diario.getNome();
-            //    DiaryGrid.Children.Add(CreateDiaryCard(imagePath, labelText));
+            foreach (InfoDiario diario in diari)
+            {
+                string imagePath = diario.getPercorso() + "../../diario1.png";
+                string labelText = diario.isPasswordAttiva() ? diario.getNome() + " 🔒" : diario.getNome();
 
-            //}
-
-            app.aggiungiDiario("Prova 2", DateTime.Now);
-
-            ReadOnlyCollection<InfoDiario> lista = app.getDiari();
-
-            app.salvaListaDiari();
-
-            // -------
-            GestoreDiario gestDi = new GestoreDiario(lista.ElementAt(0));
-
-            gestDi.aggiungiPagina(DateTime.Now);
-
-            ReadOnlyCollection<InfoPagina> lista2 = gestDi.getPagine();
-
-            gestDi.salvaDiario();
-
-            // -------
-            GestorePagina gestPa = new GestorePagina(lista2.ElementAt(0));
-
-            gestPa.setContenuto("Ciao mondo!!!!!\nCaisdfafdoifd\nfff");
-
-            gestPa.salvaPagina();
+                DiaryGrid.Children.Add(CreateDiaryCard(diario));
+            }
         }
+
+
+
+
+
+
+
+        // 🔹 CREA UNA CARD DIARIO DINAMICAMENTE
+        private Grid CreateDiaryCard(string imagePath, string labelText)
+        {
+            Grid grid = new Grid
+            {
+                Width = 148,
+                Height = 170
+            };
+
+            Rectangle rect = new Rectangle
+            {
+                Width = 148,
+                Height = 134,
+                Style = (Style)FindResource("DiaryCardStyle")
+            };
+
+            rect.SetValue(Panel.ZIndexProperty, 1);
+            rect.Fill = new ImageBrush
+            {
+                ImageSource = new BitmapImage(new Uri(imagePath, UriKind.RelativeOrAbsolute)),
+                Stretch = Stretch.Uniform
+            };
+
+            Label label = new Label
+            {
+                Content = labelText,
+                FontWeight = FontWeights.Bold,
+                FontSize = 14,
+                Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#B0B3C4")),
+                Background = Brushes.Transparent,
+                HorizontalAlignment = HorizontalAlignment.Center,
+                VerticalAlignment = VerticalAlignment.Bottom,
+                Margin = new Thickness(0, 0, 0, 12)
+            };
+
+            label.SetValue(Panel.ZIndexProperty, 999);
+
+            Style style = new Style(typeof(Label));
+            style.Setters.Add(new Setter(Label.VisibilityProperty, Visibility.Collapsed));
+
+            DataTrigger trigger = new DataTrigger
+            {
+                Binding = new System.Windows.Data.Binding("IsMouseOver")
+                {
+                    RelativeSource = new RelativeSource(RelativeSourceMode.FindAncestor, typeof(Grid), 1)
+                },
+                Value = true
+            };
+
+            trigger.Setters.Add(new Setter(Label.VisibilityProperty, Visibility.Visible));
+            style.Triggers.Add(trigger);
+
+            label.Style = style;
+
+            grid.Children.Add(rect);
+            grid.Children.Add(label);
+
+            return grid;
+        }
+
+
+
+
+
+
+
+        private void button_elimina_Click(object sender, RoutedEventArgs e)
+
+        {
+            if (diarioSelezionato == null)
+            {
+                MessageBox.Show("Seleziona un diario da eliminare.");
+                return;
+            }
+
+            Label lblNome = null;
+
+            foreach (var child in diarioSelezionato.Children)
+                if (child is Label l && l.VerticalAlignment == VerticalAlignment.Top)
+                    lblNome = l;
+
+            string nome = lblNome.Content.ToString();
+
+            try
+            {
+                app.rimuoviDiario(nome);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return;
+            }
+
+            DiaryGrid.Children.Remove(diarioSelezionato);
+            diarioSelezionato = null;
+
+            MessageBox.Show("Diario eliminato.");
+        }
+
+
+
+
+
+        // 🔹 CLICK SUL PULSANTE +
+        private void img_button_aggiungi_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            if (DiaryGrid.Children.Count >= 4)
+            {
+                MessageBox.Show("Puoi creare al massimo 4 diari.");
+                return;
+            }
+
+            InputDialog dialog = new InputDialog();
+            dialog.Owner = this;
+
+            if (dialog.ShowDialog() == true)
+            {
+                string nome = dialog.NomeDiario;
+                bool protetto = dialog.PasswordAttiva;
+                string password = dialog.Password;
+
+                if (string.IsNullOrWhiteSpace(nome))
+                {
+                    MessageBox.Show("Il nome non può essere vuoto.");
+                    return;
+                }
+
+                if (!System.Text.RegularExpressions.Regex.IsMatch(nome, @"^[A-Za-zÀ-ÖØ-öø-ÿ]+$"))
+                {
+                    MessageBox.Show("Il nome può contenere solo lettere.");
+                    return;
+                }
+
+                try
+                {
+                    app.aggiungiDiario(nome, password, DateTime.Now);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    return;
+                }
+
+                InfoDiario nuovo = app.getDiari().Last();
+                DiaryGrid.Children.Add(CreateDiaryCard(nuovo));
+
+                MessageBox.Show($"Diario '{nome}' creato!");
+            }
+        }
+
+
+
+
+
+
 
         private void click_apri(object sender, RoutedEventArgs e)
         {
-            FinestraDiario finestraDiario = new FinestraDiario();
-            finestraDiario.ShowDialog();
+            if (diarioSelezionato == null)
+            {
+                MessageBox.Show("Seleziona un diario prima di aprirlo.");
+                return;
+            }
+
+            Label lblNome = null;
+
+            foreach (var child in diarioSelezionato.Children)
+                if (child is Label l && l.VerticalAlignment == VerticalAlignment.Top)
+                    lblNome = l;
+
+            if (lblNome == null)
+            {
+                MessageBox.Show("Errore interno: impossibile trovare il nome del diario.");
+                return;
+            }
+
+            string nomeDiario = lblNome.Content.ToString();
+
+            InfoDiario diario = app.getDiari()
+                                   .FirstOrDefault(d => d.getNome() == nomeDiario);
+
+            if (diario == null)
+            {
+                MessageBox.Show("Errore: diario non trovato.");
+                return;
+            }
+
+            if (diario.isPasswordAttiva())
+            {
+                PasswordDialog pwd = new PasswordDialog(diario.getPassword());
+                pwd.Owner = this;
+
+                if (pwd.ShowDialog() != true || !pwd.AccessoConsentito)
+                    return;
+            }
+
+            FinestraDiario finestra = new FinestraDiario();
+            finestra.ShowDialog();
         }
-        //private Grid CreateDiaryCard(string imagePath, string labelText)
-        //{
-        //    // Grid container
-        //    Grid grid = new Grid
-        //    {
-        //        Width = 148,
-        //        Height = 170
-        //    };
-
-        //    // Rectangle con immagine
-        //    Rectangle rect = new Rectangle
-        //    {
-        //        Width = 148,
-        //        Height = 134,
-        //        Style = (Style)FindResource("DiaryCardStyle")
-        //    };
-
-        //    rect.SetValue(Panel.ZIndexProperty, 1);
-        //    rect.Fill = new ImageBrush
-        //    {
-        //        ImageSource = new BitmapImage(new Uri(imagePath, UriKind.Relative)),
-        //        Stretch = Stretch.Uniform
-        //    };
-
-        //    // Label
-        //    Label label = new Label
-        //    {
-        //        Content = labelText,
-        //        FontWeight = FontWeights.Bold,
-        //        FontSize = 14,
-        //        Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#B0B3C4")),
-        //        Background = Brushes.Transparent,
-        //        HorizontalAlignment = HorizontalAlignment.Center,
-        //        VerticalAlignment = VerticalAlignment.Bottom,
-        //        Margin = new Thickness(0, 0, 0, 12)
-        //    };
-
-        //    label.SetValue(Panel.ZIndexProperty, 999);
-
-        //    // Stile con trigger
-        //    Style style = new Style(typeof(Label));
-        //    style.Setters.Add(new Setter(Label.VisibilityProperty, Visibility.Collapsed));
-
-        //    DataTrigger trigger = new DataTrigger
-        //    {
-        //        Binding = new Binding("IsMouseOver")
-        //        {
-        //            RelativeSource = new RelativeSource(RelativeSourceMode.FindAncestor, typeof(Grid), 1)
-        //        },
-        //        Value = true
-        //    };
-        //    trigger.Setters.Add(new Setter(Label.VisibilityProperty, Visibility.Visible));
-
-        //    style.Triggers.Add(trigger);
-        //    label.Style = style;
-
-        //    // Aggiunta elementi alla grid
-        //    grid.Children.Add(rect);
-        //    grid.Children.Add(label);
-
-        //    return grid;
-        //}
-        //private void img_button_aggiungi_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
-        //{
-        //    //app.aggiungiDiario("NuovoDiario", DateTime.Now);
-        //    //string nomeDiario = Interaction.InputBox(
-        //    //    "Inserisci il nome del nuovo diario:",
-        //    //    "Nuovo Diario",
-        //    //    ""
-        //    //);
-
-        //    //if (!string.IsNullOrWhiteSpace(nomeDiario))
-        //    //{
-        //    //    MessageBox.Show($"Hai creato il diario: {nomeDiario}");
-        //    //    // qui puoi aggiungere il diario alla tua UniformGrid
-        //    //}
-
-        //}
-       
 
 
 
 
-        //public void apriDiario(object sender, RoutedEventArgs e)
-        //{
-        //    Button btn = sender as Button;
-        //    string nomeDiario = btn.Content.ToString();
-        //    app.apriDiario(nomeDiario);
-        //}
-        //private void AggiornaLabelStato()
-        //{
-        //    if (diarioSelezionato == null) return;
-        //    if (diarioSelezionato.ProtettoDaPassword)
-        //    {
-        //        label_stato.Content = "🔒 Protetto da password";
-        //        label_stato.Foreground = Brushes.DarkGoldenrod;
-        //        label_stato.Background = Brushes.LightYellow;
-        //    }
-        //    else
-        //    {
-        //        label_stato.Content = "🟢 Accesso libero";
-        //        label_stato.Foreground = Brushes.Green;
-        //        label_stato.Background = Brushes.LightGreen;
-        //    }
-        //}
-        //private void button_apriDiario_Click(object sender, RoutedEventArgs e)
-        //{
-        //    if (diarioSelezionato == null) { MessageBox.Show("Seleziona un diario prima."); return; }
-        //    if (diarioSelezionato.ProtettoDaPassword)
-        //    { // Chiedi password string input = Microsoft.VisualBasic.Interaction.InputBox( "Inserisci la password del diario:", "Password richiesta", "");
-        //      // if (input == diarioSelezionato.Password){
-        //      // MessageBox.Show("Diario aperto!"); 
-        //      // Apri diario...
-        //      // } else { MessageBox.Show("Password errata.");
-        //      // }
-        //      // } else { MessageBox.Show("Diario aperto!"); 
-        //      // Apri diario...
-        //      // } }
-        //    }
+
+
+
+
+        // 🔵 Variabile per tenere traccia della card selezionata
+
+
+        // 🔵 CREA UNA CARD DIARIO COMPLETA
+        private Grid CreateDiaryCard(InfoDiario diario)
+        {
+            // GRID PRINCIPALE
+            Grid grid = new Grid
+            {
+                Width = 148,
+                Height = 200,
+                Margin = new Thickness(10),
+                Cursor = Cursors.Hand
+            };
+
+            // 🔹 EVENTO CLICK PER SELEZIONE
+            grid.MouseLeftButtonUp += (s, e) =>
+            {
+                // Se clicchi di nuovo sulla stessa → diseleziona
+                if (diarioSelezionato == grid)
+                {
+                    RimuoviEvidenziazione(grid);
+                    diarioSelezionato = null;
+                    return;
+                }
+
+                // Rimuovi evidenziazione precedente
+                if (diarioSelezionato != null)
+                    RimuoviEvidenziazione(diarioSelezionato);
+
+                // Evidenzia questa
+                ApplicaEvidenziazione(grid);
+                diarioSelezionato = grid;
+            };
+
+            // 🔹 LABEL SUPERIORE (NOME)
+            Label lblNome = new Label
+            {
+                Content = diario.getNome(),
+                FontWeight = FontWeights.Bold,
+                FontSize = 16,
+                Foreground = Brushes.White,
+                HorizontalAlignment = HorizontalAlignment.Center,
+                VerticalAlignment = VerticalAlignment.Top,
+                Margin = new Thickness(0, 5, 0, 0)
+            };
+
+            // 🔹 IMMAGINE
+            Rectangle rect = new Rectangle
+            {
+                Width = 148,
+                Height = 134,
+                VerticalAlignment = VerticalAlignment.Center,
+                Style = (Style)FindResource("DiaryCardStyle")
+            };
+
+            rect.Fill = new ImageBrush
+            {
+                ImageSource = new BitmapImage(new Uri("pack://application:,,,/diario1.png")),
+                Stretch = Stretch.Uniform
+            };
+
+            // 🔹 LABEL INFERIORE (STATO)
+            Label lblStato = new Label
+            {
+                Content = diario.isPasswordAttiva() ? "Bloccato 🔒" : "Accesso libero",
+                FontWeight = FontWeights.Bold,
+                FontSize = 14,
+                Foreground = Brushes.LightGray,
+                HorizontalAlignment = HorizontalAlignment.Center,
+                VerticalAlignment = VerticalAlignment.Bottom,
+                Margin = new Thickness(0, 0, 0, 5)
+            };
+
+            // AGGIUNTA ELEMENTI
+            grid.Children.Add(lblNome);
+            grid.Children.Add(rect);
+            grid.Children.Add(lblStato);
+
+            return grid;
+        }
+
+
+
+
+
+
+
+        // 🔵 APPLICA EVIDENZIAZIONE (come hover)
+        private void ApplicaEvidenziazione(Grid grid)
+        {
+            foreach (var child in grid.Children)
+            {
+                if (child is Rectangle rect)
+                {
+                    rect.Stroke = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#00CFFF"));
+                    rect.StrokeThickness = 3;
+                    rect.Effect = new System.Windows.Media.Effects.DropShadowEffect
+                    {
+                        BlurRadius = 26,
+                        ShadowDepth = 0,
+                        Opacity = 0.9,
+                        Color = (Color)ColorConverter.ConvertFromString("#8000CFFF")
+                    };
+                }
+            }
+        }
+
+
+
+
+
+        // 🔵 RIMUOVE EVIDENZIAZIONE
+        private void RimuoviEvidenziazione(Grid grid)
+        {
+            foreach (var child in grid.Children)
+            {
+                if (child is Rectangle rect)
+                {
+                    rect.Stroke = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#33FFFFFF"));
+                    rect.StrokeThickness = 1.5;
+                    rect.Effect = new System.Windows.Media.Effects.DropShadowEffect
+                    {
+                        BlurRadius = 14,
+                        ShadowDepth = 0,
+                        Opacity = 0.35,
+                        Color = (Color)ColorConverter.ConvertFromString("#66222A3F")
+                    };
+                }
+            }
+        }
+
     }
 }
