@@ -19,11 +19,6 @@ namespace Progetto_diario
             leggiPagina();
         }
 
-        public void setDataPagina(DateTime dataPagina)
-        {
-            pagina.setDataPagina(dataPagina);
-        }
-
         public void setContenuto(string contenuto)
         {
             pagina.setContenuto(contenuto);

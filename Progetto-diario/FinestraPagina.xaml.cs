@@ -139,7 +139,6 @@ namespace Progetto_diario
                 textBox_contenuto.Document.ContentStart,
                 textBox_contenuto.Document.ContentEnd).Text);
 
-            pagina.setDataPagina(dataPicker.SelectedDate.Value);
             pagina.salvaPagina();
             MessageBox.Show("Pagina salvata con successo!");
 
