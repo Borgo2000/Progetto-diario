@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,10 +28,13 @@ namespace Progetto_diario
             InitializeComponent();
             this.diario = diario;
 
-            // Genera 10 pagine
-            for (int i = 1; i <= 10; i++)
+            ReadOnlyCollection<InfoPagina> pagine = diario.getPagine();
+            foreach (InfoPagina pagina in pagine)
             {
-                PagesGrid.Children.Add(CreatePageCard(i));
+                int labelNumPag = pagina.getNumeroPagina();
+
+
+                PagesGrid.Children.Add(CreatePageCard(labelNumPag));
             }
         }
 
@@ -120,10 +124,11 @@ namespace Progetto_diario
             int numeroPagina = int.Parse(testo.Replace("Pagina ", ""));
 
             // Salvo nel gestore
-            diario.PaginaCorrente = numeroPagina;
+            InfoPagina pagina =diario.getPagine()
+                                   .FirstOrDefault(d => d.getNumeroPagina() == numeroPagina);
 
             // Apro la finestra pagina
-            FinestraPagina finestraPagina = new FinestraPagina();
+            FinestraPagina finestraPagina = new FinestraPagina(new GestorePagina(pagina));
             finestraPagina.ShowDialog();
         }
 
@@ -148,11 +153,14 @@ namespace Progetto_diario
             int numero = PagesGrid.Children.Count + 1;
 
             // aggiungi al modello
-            diario.aggiungiPagina();
+            diario.aggiungiPagina(DateTime.Now);
 
             // aggiungi alla UI
             PagesGrid.Children.Add(CreatePageCard(numero));
-        
+
+            diario.salvaDiario();
+            
+
 
         }
 
@@ -179,6 +187,7 @@ namespace Progetto_diario
             // Rimuovo dal gestore
             diario.rimuoviPagina(numeroPagina);
 
+            diario.salvaDiario();
             // Rimuovo dalla UI
             PagesGrid.Children.Remove(paginaSelezionata);
             paginaSelezionata = null;
@@ -206,12 +215,6 @@ namespace Progetto_diario
         }
 
 
-        //private GestoreDiario gestoreDiario = new GestoreDiario();
-        //public void apriPagina(object sender, RoutedEventArgs e)
-        //{
-        //    Button btn = sender as Button;
-        //    string nomePagina = btn.Content.ToString();
-        //    gestoreDiario.GetDiario().apriPagina(nomePagina);
-        //}
+      
     }
 }

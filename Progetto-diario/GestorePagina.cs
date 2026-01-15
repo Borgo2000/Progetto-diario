@@ -48,6 +48,10 @@ namespace Progetto_diario
         {
             return pagina.getContenuto();
         }
+        public DateTime getDataPagina()
+        {
+            return pagina.getDataPagina();
+        }
 
         public ReadOnlyCollection<string> getAllegati()
         {

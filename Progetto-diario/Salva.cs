@@ -77,7 +77,8 @@ namespace Progetto_diario
 
         public static void EliminaPagina(InfoPagina pagina)
         {
-            Directory.Delete(pagina.getPercorso(), true);
+            if (Directory.Exists(pagina.getPercorso()))
+                Directory.Delete(pagina.getPercorso(), true);
 
         }
     }

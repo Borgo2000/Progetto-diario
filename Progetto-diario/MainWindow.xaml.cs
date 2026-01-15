@@ -132,7 +132,7 @@ namespace Progetto_diario
                 MessageBox.Show(ex.Message);
                 return;
             }
-
+            app.salvaListaDiari();
             DiaryGrid.Children.Remove(diarioSelezionato);
             diarioSelezionato = null;
 

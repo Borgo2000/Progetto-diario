@@ -81,13 +81,13 @@
         <Label Content="Musica"
                Foreground="White"
                FontWeight="Bold"
-               Margin="454,13,0,0"
+               Margin="23,11,0,0"
                HorizontalAlignment="Left"
                VerticalAlignment="Top"/>
 
         <ComboBox x:Name="combobox_musica"
           HorizontalAlignment="Left"
-          Margin="454,39,0,0"
+          Margin="10,41,0,0"
           VerticalAlignment="Top"
           Width="150"
           Foreground="Black"
@@ -173,6 +173,7 @@
                 Width="100"
                 Height="38"
                 Style="{StaticResource SaveButton}" Cursor="" Click="button_salva_Click"/>
+        <DatePicker x:Name="dataPicker" HorizontalAlignment="Left" Height="22" Margin="508,30,0,0" VerticalAlignment="Top" Width="149"/>
 
     </Grid>
 </Window>

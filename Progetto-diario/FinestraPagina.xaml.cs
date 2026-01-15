@@ -11,10 +11,16 @@ namespace Progetto_diario
     public partial class FinestraPagina : Window
     {
         private MediaPlayer player = new MediaPlayer();
+        private GestorePagina pagina = null;
 
-        public FinestraPagina()
+        internal FinestraPagina(GestorePagina pagina)
         {
             InitializeComponent();
+
+            
+
+            
+
 
             // Placeholder iniziale
             textBox_contenuto.Document.Blocks.Clear();
@@ -23,6 +29,20 @@ namespace Progetto_diario
 
             textBox_contenuto.GotFocus += TextBox_GotFocus;
             textBox_contenuto.LostFocus += TextBox_LostFocus;
+
+
+            this.pagina = pagina;
+            // Carica contenuto esistente
+            string contenuto = pagina.getContenuto();
+            if (!string.IsNullOrEmpty(contenuto))
+            {
+                textBox_contenuto.Document.Blocks.Clear();
+                textBox_contenuto.Document.Blocks.Add(new Paragraph(new Run(contenuto)));
+                textBox_contenuto.Foreground = Brushes.White;
+            }
+            dataPicker.SelectedDate = pagina.getDataPagina();
+
+
         }
 
         private void TextBox_GotFocus(object sender, RoutedEventArgs e)
@@ -115,7 +135,14 @@ namespace Progetto_diario
 
         private void button_salva_Click(object sender, RoutedEventArgs e)
         {
-            //salvataggio
+            pagina.setContenuto(new TextRange(
+                textBox_contenuto.Document.ContentStart,
+                textBox_contenuto.Document.ContentEnd).Text);
+
+            pagina.setDataPagina(dataPicker.SelectedDate.Value);
+            pagina.salvaPagina();
+            MessageBox.Show("Pagina salvata con successo!");
+
         }
     }
 }

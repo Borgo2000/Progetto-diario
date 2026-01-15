@@ -128,10 +128,10 @@
              HorizontalAlignment="Center"
              VerticalAlignment="Top"
              Margin="0,31,0,0"
-             Width="1455" Height="568" RenderTransformOrigin="0.5,0.5">
-            
+             Width="1456" Height="591" RenderTransformOrigin="0.5,0.5">
 
-            
+
+
 
         </UniformGrid>
 
@@ -141,7 +141,7 @@
         Height="182"
         HorizontalAlignment="Left"
         VerticalAlignment="Top"
-        Margin="66,584,0,0"
+        Margin="66,606,0,0"
         Panel.ZIndex="50">
 
             <Image x:Name="img_button_aggiungiDiaeio"
