@@ -60,7 +60,7 @@ namespace Progetto_diario
         }
         public static Diario fileToDiario(string file, InfoDiario infoDiario)
         {
-            string[] lines = file.Split('\n');
+            string[] lines = file.TrimEnd('\n').Split('\n');
 
             string password = lines[0];
 
