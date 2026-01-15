@@ -68,5 +68,17 @@ namespace Progetto_diario
             string file = File.ReadAllText(percorso);
             return Traduci.fileToPagina(file, infoPagina);
         }
+
+
+        public static void EliminaDiario(InfoDiario diario)
+        {
+            Directory.Delete(diario.getPercorso(), true);
+        }
+
+        public static void EliminaPagina(InfoPagina pagina)
+        {
+            Directory.Delete(pagina.getPercorso(), true);
+
+        }
     }
 }

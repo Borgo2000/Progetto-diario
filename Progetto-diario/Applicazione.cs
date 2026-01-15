@@ -28,8 +28,14 @@ namespace Progetto_diario
         }
         public void rimuoviDiario(string nome)
         {
-            if (diari.getDiari().RemoveAll(p => p.getNome() == nome) == 0)
+            InfoDiario diario = diari.getDiari().FirstOrDefault(p => p.getNome() == nome);
+
+            if (diario == null)
                 throw new Exception("Errore: Impossibile rimuovere l'oggetto.");
+
+            Salva.EliminaDiario(diario);
+
+            diari.getDiari().RemoveAll(p => p.getNome() == nome);
         }
 
         public ReadOnlyCollection<InfoDiario> getDiari()

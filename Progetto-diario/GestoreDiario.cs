@@ -46,8 +46,14 @@ namespace Progetto_diario
 
         public void rimuoviPagina(int numeroPagina)
         {
-            if (diario.getPagine().RemoveAll(p => p.getNumeroPagina() == numeroPagina) == 0)
+            InfoPagina pagina = diario.getPagine().FirstOrDefault(p => p.getNumeroPagina() == numeroPagina);
+
+            if (pagina == null)
                 throw new Exception("Errore: Impossibile rimuovere l'oggetto.");
+
+            Salva.EliminaPagina(pagina);
+
+            diario.getPagine().RemoveAll(p => p.getNumeroPagina() == numeroPagina);
         }
 
         public void setPassword(string password, string nuovaPassword)
