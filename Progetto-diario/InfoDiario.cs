@@ -50,16 +50,5 @@ namespace Progetto_diario
         {
             return passwordAttiva;
         }
-
-        protected void _setNome(string nome)
-        {
-            this.nome = nome;
-        }
-
-        public string toString()
-        {
-            return nome + " " + dataCreazione;
-        }
-
     }
 }

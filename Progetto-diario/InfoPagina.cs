@@ -36,11 +36,5 @@ namespace Progetto_diario
         {
             return dataPagina;
         }
-
-        public string toString()
-        {
-            return "P." + numeroPagina + " " + dataPagina;
-        }
-
     }
 }
