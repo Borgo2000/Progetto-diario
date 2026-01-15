@@ -28,17 +28,15 @@
 
             <Style.Triggers>
 
-                <!-- HOVER: ingrandimento + glow più forte -->
+                <!-- HOVER -->
                 <Trigger Property="IsMouseOver" Value="True">
                     <Setter Property="RenderTransform">
                         <Setter.Value>
                             <ScaleTransform ScaleX="1.06" ScaleY="1.06"/>
                         </Setter.Value>
                     </Setter>
-
                     <Setter Property="BorderBrush" Value="#8A2BE2"/>
                     <Setter Property="BorderThickness" Value="3"/>
-
                     <Setter Property="Effect">
                         <Setter.Value>
                             <DropShadowEffect Color="#8A2BE2"
@@ -47,6 +45,12 @@
                                       Opacity="0.9"/>
                         </Setter.Value>
                     </Setter>
+                </Trigger>
+
+                <!-- ⭐ SELEZIONE -->
+                <Trigger Property="Tag" Value="selected">
+                    <Setter Property="BorderBrush" Value="#8A2BE2"/>
+                    <Setter Property="BorderThickness" Value="4"/>
                 </Trigger>
 
             </Style.Triggers>
@@ -123,17 +127,9 @@
                Foreground="White"/>
 
         <!-- CARD PAGINE -->
-        <UniformGrid Rows="1" Columns="4"
-             x:Name="PagesGrid"
-             HorizontalAlignment="Center"
-             VerticalAlignment="Top"
-             Margin="0,31,0,0"
-             Width="1456" Height="591" RenderTransformOrigin="0.5,0.5">
-
-
-
-
-        </UniformGrid>
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <WrapPanel x:Name="PagesGrid" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,120,0,0"></WrapPanel>
+        </ScrollViewer>
 
 
         <!-- PULSANTE + -->

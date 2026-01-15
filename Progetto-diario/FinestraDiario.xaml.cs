@@ -50,29 +50,21 @@ namespace Progetto_diario
             {
                 Width = 160,
                 Height = 220,
-                Margin = new Thickness(10),
+                Margin = new Thickness(15, 10, 15, 10),
                 Style = (Style)FindResource("DiaryCardStyle"),
-                Cursor = Cursors.Hand
+                Cursor = Cursors.Hand,
+                RenderTransformOrigin = new Point(0.5, 0.5),
+                RenderTransform = new ScaleTransform(1, 1)
             };
 
             // CLICK → selezione
-            card.MouseLeftButtonUp += (s, e) =>
+            card.PreviewMouseLeftButtonDown += (s, e) =>
+
             {
                 // Se clicchi la stessa → deseleziona
-                if (paginaSelezionata == card)
-                {
-                    RimuoviEvidenziazione(card);
-                    paginaSelezionata = null;
-                    return;
-                }
-
-                // Rimuovi evidenziazione precedente
-                if (paginaSelezionata != null)
-                    RimuoviEvidenziazione(paginaSelezionata);
-
-                // Applica evidenziazione
-                ApplicaEvidenziazione(card);
-                paginaSelezionata = card;
+                if (paginaSelezionata == card) { card.Tag = null; RimuoviEvidenziazione(card); paginaSelezionata = null; return; } 
+                if (paginaSelezionata != null) { paginaSelezionata.Tag = null; RimuoviEvidenziazione(paginaSelezionata); } 
+                Tag = "selected"; ApplicaEvidenziazione(card); paginaSelezionata = card;
             };
 
             StackPanel stack = new StackPanel
@@ -148,8 +140,11 @@ namespace Progetto_diario
 
         private void AggiungiPagina_Click(object sender, MouseButtonEventArgs e)
         {
-            
-        
+            if (PagesGrid.Children.Count >= 14) { MessageBox.Show("Puoi aggiungere al massimo 14 pagine."); return; }
+
+
+
+
             int numero = PagesGrid.Children.Count + 1;
 
             // aggiungi al modello
@@ -204,17 +199,38 @@ namespace Progetto_diario
 
         private void ApplicaEvidenziazione(Border card)
         {
-            card.BorderBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#8A2BE2"));
-            card.BorderThickness = new Thickness(3);
+            
+        
+
+
+            card.BorderThickness = new Thickness(4);
+
+            var scale = card.RenderTransform as ScaleTransform;
+            if (scale != null)
+            {
+                scale.ScaleX = 1.06;
+                scale.ScaleY = 1.06;
+            }
         }
+
 
         private void RimuoviEvidenziazione(Border card)
         {
-            card.BorderBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#5A3FFF"));
+            // NON toccare BorderBrush → lo gestisce lo stile
             card.BorderThickness = new Thickness(2);
+
+            var scale = card.RenderTransform as ScaleTransform;
+            if (scale != null)
+            {
+                scale.ScaleX = 1;
+                scale.ScaleY = 1;
+            }
         }
 
 
-      
+
+
+
+
     }
 }
