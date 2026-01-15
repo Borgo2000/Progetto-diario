@@ -172,19 +172,32 @@ namespace Progetto_diario
                     MessageBox.Show("Il nome può contenere solo lettere.");
                     return;
                 }
-
+                if (protetto==true)
+                {
+                    if (string.IsNullOrWhiteSpace(password))
+                    {
+                        MessageBox.Show("La password non puo essere vuota.");
+                        return;
+                    }
+                    
+                }
                 try
                 {
-                    app.aggiungiDiario(nome, password, DateTime.Now);
+
+                    app.aggiungiDiario(nome, protetto, DateTime.Now);
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message);
                     return;
                 }
-
+                
                 InfoDiario nuovo = app.getDiari().Last();
                 DiaryGrid.Children.Add(CreateDiaryCard(nuovo));
+                GestoreDiario gestore = new GestoreDiario(nuovo);
+                gestore.setPassword("", password);
+                gestore.salvaDiario();
+                app.salvaListaDiari();
 
                 MessageBox.Show($"Diario '{nome}' creato!");
             }
@@ -226,17 +239,17 @@ namespace Progetto_diario
                 MessageBox.Show("Errore: diario non trovato.");
                 return;
             }
-
+            GestoreDiario gestoreDiario = new GestoreDiario(diario);
             if (diario.isPasswordAttiva())
             {
-                PasswordDialog pwd = new PasswordDialog(diario.getPassword());
+                PasswordDialog pwd = new PasswordDialog(gestoreDiario);
                 pwd.Owner = this;
-
+                
                 if (pwd.ShowDialog() != true || !pwd.AccessoConsentito)
                     return;
             }
 
-            FinestraDiario finestra = new FinestraDiario();
+            FinestraDiario finestra = new FinestraDiario(gestoreDiario);
             finestra.ShowDialog();
         }
 

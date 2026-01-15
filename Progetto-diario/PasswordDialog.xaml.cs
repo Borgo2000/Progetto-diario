@@ -18,20 +18,22 @@ namespace Progetto_diario
 {
     public partial class PasswordDialog : Window
     {
-        private string passwordCorretta;
+        private GestoreDiario diario;
 
         public bool AccessoConsentito { get; private set; } = false;
 
-        public PasswordDialog(string passwordAttesa)
+        internal PasswordDialog(GestoreDiario diario)
         {
             InitializeComponent();
-            passwordCorretta = passwordAttesa;
+            this.diario = diario;
         }
 
         private void Ok_Click(object sender, RoutedEventArgs e)
         {
-            if (txtPassword.Password == passwordCorretta)
+            diario.validaDiario(txtPassword.Password);
+            if (diario.isValidato())
             {
+
                 AccessoConsentito = true;
                 DialogResult = true;
                 Close();

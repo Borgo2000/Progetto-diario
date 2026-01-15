@@ -17,14 +17,14 @@ namespace Progetto_diario
             leggiListaDiari();
         }
 
-        public void aggiungiDiario(string nome, DateTime dataCreazione)
+        public void aggiungiDiario(string nome, bool passwordAttiva, DateTime dataCreazione)
         {
             foreach (InfoDiario id in diari.getDiari())
                 if (id.getNome() == nome)
                     throw new Exception("Errore: Nome gia' esistente.");
 
             numeroDiari++;
-            diari.getDiari().Add(new InfoDiario("./Diari/" + nome + "/", numeroDiari, nome, false, dataCreazione));
+            diari.getDiari().Add(new InfoDiario("./Diari/" + nome + "/", numeroDiari, nome, passwordAttiva, dataCreazione));
         }
         public void rimuoviDiario(string nome)
         {

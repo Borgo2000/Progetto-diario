@@ -19,9 +19,11 @@ namespace Progetto_diario
     /// </summary>
     public partial class FinestraDiario : Window
     {
-        public FinestraDiario()
+        private GestoreDiario diario = null;
+        internal FinestraDiario(GestoreDiario diario)
         {
             InitializeComponent();
+            this.diario = diario;
         }
 
         private void clickApri(object sender, RoutedEventArgs e)
