@@ -55,6 +55,8 @@ namespace Progetto_diario
         {
             if (this.password == password)
                 diarioVaidato = true;
+            else
+                diarioVaidato = false;
         }
 
         public bool isValidato()

@@ -23,6 +23,16 @@ namespace Progetto_diario
             leggiDiario();
         }
 
+        private void setupNumeroPagine()
+        {
+            if (diario.isValidato())
+                foreach (InfoPagina ip in diario.getPagine())
+                {
+                    if (ip.getNumeroPagina() > numeroPagine)
+                        numeroPagine = ip.getNumeroPagina();
+                }
+        }
+
         public void setNome(string nome)
         {
             diario.setNome(nome);
@@ -48,6 +58,7 @@ namespace Progetto_diario
         public void validaDiario(string password)
         {
             diario.validaDiario(password);
+            setupNumeroPagine();
         }
 
         public bool isValidato()
@@ -69,11 +80,7 @@ namespace Progetto_diario
         {
             diario = Salva.LeggiDiario(infoDiario);
 
-            foreach (InfoPagina ip in diario.getPagine())
-            {
-                if (ip.getNumeroPagina() > numeroPagine)
-                    numeroPagine = ip.getNumeroPagina();
-            }
+            setupNumeroPagine();
         }
     }
 }

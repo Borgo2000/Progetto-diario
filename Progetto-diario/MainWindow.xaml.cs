@@ -193,11 +193,13 @@ namespace Progetto_diario
                 }
                 
                 InfoDiario nuovo = app.getDiari().Last();
+                app.salvaListaDiari();
+
                 DiaryGrid.Children.Add(CreateDiaryCard(nuovo));
+
                 GestoreDiario gestore = new GestoreDiario(nuovo);
                 gestore.setPassword("", password);
                 gestore.salvaDiario();
-                app.salvaListaDiari();
 
                 MessageBox.Show($"Diario '{nome}' creato!");
             }
