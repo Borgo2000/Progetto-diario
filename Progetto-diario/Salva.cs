@@ -9,7 +9,7 @@ namespace Progetto_diario
 {
     internal class Salva
     {
-        private static void verificaPercorso(string percorso) {
+        private static void verificaPercorso(string percorso, string defaultFile) {
             string dir = Path.GetDirectoryName(percorso);
             if (!Directory.Exists(dir))
             {
@@ -19,7 +19,7 @@ namespace Progetto_diario
 
             if (!File.Exists(percorso))
             {
-                File.WriteAllText(percorso, "");
+                File.WriteAllText(percorso, defaultFile);
                 //throw new Exception("File Inesistente.");
             }
         }
@@ -33,7 +33,7 @@ namespace Progetto_diario
         public static ListaDiari LeggiDiari(string percorso)
         {
             percorso += "InfoDiari.txt";
-            verificaPercorso(percorso);
+            verificaPercorso(percorso, "");
 
             string file = File.ReadAllText(percorso);
             return Traduci.fileToDiari(file);
@@ -48,23 +48,22 @@ namespace Progetto_diario
         public static Diario LeggiDiario(InfoDiario infoDiario)
         {
             string percorso = infoDiario.getPercorso() + "InfoDiario.txt";
-            verificaPercorso(percorso);
+            verificaPercorso(percorso, "");
 
             string file = File.ReadAllText(percorso);
             return Traduci.fileToDiario(file, infoDiario);
         }
 
-
         public static void SalvaPagina(Pagina pagina)
         {
             Directory.CreateDirectory(Path.GetDirectoryName(pagina.getPercorso()));
-            File.WriteAllText(pagina.getPercorso(), Traduci.paginaToFile(pagina));
+            File.WriteAllText(pagina.getPercorso() + "InfoPagina.txt", Traduci.paginaToFile(pagina));
         }
 
         public static Pagina LeggiPagina(InfoPagina infoPagina)
         {
             string percorso = infoPagina.getPercorso() + "InfoPagina.txt";
-            verificaPercorso(percorso);
+            verificaPercorso(percorso, "0");
 
             string file = File.ReadAllText(percorso);
             return Traduci.fileToPagina(file, infoPagina);
