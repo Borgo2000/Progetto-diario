@@ -48,31 +48,29 @@ class Salva{
 }
 
 'Interazioni tra interfacce
-MainWindow --> FinestraDiario 
-FinestraDiario --> FinestraPagina 
+MainWindow --> FinestraDiario
+FinestraDiario --> FinestraPagina
 
 'Interazioni con interfacce
-MainWindow --> Applicazione 
-FinestraDiario --> GestoreDiario 
-FinestraPagina --> GestorePagina 
+MainWindow --> Applicazione
+FinestraDiario --> GestoreDiario
+FinestraPagina --> GestorePagina
 
-'Relazioni
-Applicazione *-- ListaDiari 
-GestoreDiario *-- Diario 
-GestorePagina *-- Pagina 
+'Relazioni finestre-gestori
+Applicazione "1" *-- "1" ListaDiari
+GestoreDiario "1" *-- "1" Diario
+GestorePagina "1" *-- "1" Pagina
 
-'Relazioni traduzione
-Applicazione --> Traduci
-GestoreDiario --> Traduci
-GestorePagina --> Traduci
-
-'Relazioni traduzione
+'Relazioni gestori-salvataggio
 Applicazione --> Salva
 GestoreDiario --> Salva
 GestorePagina --> Salva
 
+'Relazione salvataggio-traduzione
+Salva --> Traduci
+
 'Relazioni strutture dati
-ListaDiari *-- InfoDiario 
-Diario *-- InfoPagina 
+ListaDiari "1" *-- "0..*" InfoDiario
+Diario "1" *-- "0..*" InfoPagina
 
 @enduml

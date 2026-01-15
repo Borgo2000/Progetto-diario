@@ -25,8 +25,8 @@ class Applicazione{
     'Inizializza la lista diari tramite classe Salva
     +Applicazione()
 
-    +aggiungiDiario(nome: string, dataCreazione: ) : void
-    +rimuoviDiario(diario: InfoDiario) : void
+    +aggiungiDiario(nome: string, passwordAttiva: bool, dataCreazione: DateTime) : void
+    +rimuoviDiario(nome: string) : void
 
     +getDiari() : Lista<InfoDiario> copia
 
@@ -36,11 +36,12 @@ class Applicazione{
 }
 
 class GestoreDiario{
+    -infoDiario : InfoDiario
     -diario : Diario
     -numeroPagine : int
 
     'Inizializza il diario
-    +GestoreDiario()
+    +GestoreDiario(infoDiario: InfoDiario)
 
     +setNome(nome: string) : void
     +aggiungiPagina(pagina: InfoPagina) : void
@@ -56,12 +57,12 @@ class GestoreDiario{
 }
 
 class GestorePagina{
+    -infoPagina : InfoPagina
     -pagina : Pagina
 
     'Inizializza la pagina
     +GestorePagina()
 
-    +setDataPagina(dataPagina: Date) : void
     +setContenuto(contenuto: string) : void
 
     +aggiungiAllegato(percorso: string) : void
@@ -87,17 +88,18 @@ class ListaDiari{
 class InfoDiario{
     -percorso : stirng
     -numeroDiario : int
+    -passwordAttiva : bool
     -dataCreazione : Date
     #nome : string
 
-    +InfoDiario(percorso: string, numeroDiario: int, nome: string, dataCreazione: Date)
+    +InfoDiario(percorso: string, numeroDiario: int, passwordAttiva: bool, nome: string, dataCreazione: Date)
 
     +getPercorso() : string
     +getNumeroDiario() : int
     +getDataCreazione() : Date
     +getNome() : string
 
-    +ToString() : string
+    +isPasswordAttiva() : bool
 }
 
 class Diario extends InfoDiario{
@@ -129,8 +131,6 @@ class InfoPagina{
     +getPercorso() : string
     +getNumeroPagina() : int
     +getDataPagina() : Date
-
-    +ToString() : string
 }
 
 class Pagina extends InfoPagina{
@@ -154,21 +154,24 @@ class Traduci{
     +fileToDiari(file: string) : ListaDiari
 
     +diarioToFile(diario: Diario) : string
-    +fileToDiario(file: string) : Diario
+    +fileToDiario(file: string, infoDiario: InfoDiario) : Diario
 
     +paginaToFile(pagina: Pagina) : string
-    +fileToPagina(file: string) : Pagina
+    +fileToPagina(file: string, infoPagina: InfoPagina) : Pagina
 }
 
 class Salva{
-    +salvaDiari(diari: ListaDiari) : void
-    +leggiDiari() : ListaDiari
+    +salvaDiari(diari: ListaDiari, percorso: string) : void
+    +leggiDiari(percorso: string) : ListaDiari
 
     +salvaDiario(diario: Diario) : void
-    +leggiDiario() : Diario
+    +leggiDiario(infoDiario: InfoDiario) : Diario
 
     +salvaPagina(pagina: Pagina) : void
-    +leggiPagina() : Pagina
+    +leggiPagina(infoPagina: InfoPagina) : Pagina
+
+    +eliminaDiario(diario: InfoDiario) : void
+    +eliminaPagina(pagina: InfoPagina) : void
 }
 
 'Interazioni tra interfacce
